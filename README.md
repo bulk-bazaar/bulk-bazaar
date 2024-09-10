@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+## Demo
+👇👇👇<br/>
+<a href="https://ariyan-todo.vercel.app">Ariyan ToDo</a><br/>
+👆👆👆
+# ToDo
+To-do list website made with React JS, Tailwind CSS, TypeScript and more.
+![page](https://ariyanem.ir/temp/todo/1.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Add New](https://ariyanem.ir/temp/todo/2.png)
 
-## Available Scripts
+![GameCenter](https://ariyanem.ir/temp/todo/3.png)
 
-In the project directory, you can run:
+Light mode:
+![LightMod](https://ariyanem.ir/temp/todo/4.png)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features 
+- Responsive design for optimal usage on various devices.
+- Filter tasks by status (all, active, completed).
+- Applied to organize your tasks with the following data: title, description, date, mark as complete and mark as important.
+- Tasks are organized into routes: today's tasks, important tasks, incomplete, complete, all tasks and tasks by directory (folder). Directories and tasks can be edited or deleted. In addition, there is a main directory called "Main" which cannot be edited or deleted.
+- The list of tasks can be displayed first in: nearest, farthest, complete or incomplete.
+- You can search for any tasks in the search field.
+- Today's tasks are shown in the user section and in notifications.
+- Tasks, directories and DarkMode data are saved to localStorage.
 
-### `npm test`
+## Goal
+The project mainly aimed to put into practice knowledge of TypeScript, Tailwind, UseApi and React Js.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tools used
+- React JS
+- TypeScript
+- Tailwind CSS
+- React Router DOM
+- HTML
+- Api
+- Weather
+- Game
+- Figma
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How to Run
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+if Need run on your machine:
 
-### `npm run eject`
+Clone project
+```
+git clone https://github.com/ariyan-emi/ToDo.git
+```
+go to project
+```
+cd ToDo-main
+```
+install npm
+```
+npm install
+```
+start project
+```
+npm start
+```
+## Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.😊
+ 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
