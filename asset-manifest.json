@@ -1,15 +1,31 @@
 {
   "files": {
-    "main.css": "/bulk-bazaar/static/css/main.f855e6bc.css",
-    "main.js": "/bulk-bazaar/static/js/main.2e262d83.js",
-    "static/js/453.7b9cbdf4.chunk.js": "/bulk-bazaar/static/js/453.7b9cbdf4.chunk.js",
+    "main.css": "/bulk-bazaar/static/css/main.5e246454.css",
+    "main.js": "/bulk-bazaar/static/js/main.3d30a71e.js",
+    "static/media/Sans_a4fran3.woff": "/bulk-bazaar/static/media/Sans_a4fran3.89ca84830aac0d525315.woff",
+    "static/media/Social.svg": "/bulk-bazaar/static/media/Social.249b913ac10967cf87c979a29d3666d6.svg",
+    "static/media/tic-tac-toe.svg": "/bulk-bazaar/static/media/tic-tac-toe.b09ec1b49076b6001a2b2de79fafb32b.svg",
+    "static/media/gameboy.svg": "/bulk-bazaar/static/media/gameboy.cbf0cfd06f85677faaec3d1384ec04ae.svg",
+    "static/media/2048.svg": "/bulk-bazaar/static/media/2048.14393a7f7b35d234e26cfcf2e28644d0.svg",
+    "static/media/date.svg": "/bulk-bazaar/static/media/date.a95ebe6e89803e2f48884bc7cd347bc0.svg",
+    "static/media/trash.svg": "/bulk-bazaar/static/media/trash.65329eb4d02d742fbbb673d423203636.svg",
     "index.html": "/bulk-bazaar/index.html",
-    "main.f855e6bc.css.map": "/bulk-bazaar/static/css/main.f855e6bc.css.map",
-    "main.2e262d83.js.map": "/bulk-bazaar/static/js/main.2e262d83.js.map",
-    "453.7b9cbdf4.chunk.js.map": "/bulk-bazaar/static/js/453.7b9cbdf4.chunk.js.map"
+    "static/media/view-2.svg": "/bulk-bazaar/static/media/view-2.f7da57b91749892d7d76cced0a1edc43.svg",
+    "static/media/star-line.svg": "/bulk-bazaar/static/media/star-line.815700d21daf1678fd355eb34c323dc6.svg",
+    "static/media/options.svg": "/bulk-bazaar/static/media/options.b23e257ac213477f9bf22b28d1837460.svg",
+    "static/media/view-1.svg": "/bulk-bazaar/static/media/view-1.cdbcf33578dada6da236eba9cc31b36d.svg",
+    "static/media/edit.svg": "/bulk-bazaar/static/media/edit.4275c76a6db68c66d7881e7067da982d.svg",
+    "static/media/arrow.svg": "/bulk-bazaar/static/media/arrow.3b06989b99047ede0ed33f04ec61ae93.svg",
+    "static/media/bell.svg": "/bulk-bazaar/static/media/bell.b14336ff1a2df6f4593c1d74cb9fbaf0.svg",
+    "static/media/search.svg": "/bulk-bazaar/static/media/search.4914cd7cc165cd56223ebfc77cd00242.svg",
+    "static/media/menu.svg": "/bulk-bazaar/static/media/menu.31f722ed2e31fffe79f65e40ce2c6453.svg",
+    "static/media/check.svg": "/bulk-bazaar/static/media/check.e07c35adf7078dbf2f813000e3437ad9.svg",
+    "static/media/x.svg": "/bulk-bazaar/static/media/x.c8494eb2642084db18174e0aac7bfcf6.svg",
+    "main.5e246454.css.map": "/bulk-bazaar/static/css/main.5e246454.css.map",
+    "main.3d30a71e.js.map": "/bulk-bazaar/static/js/main.3d30a71e.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.2e262d83.js"
+    "static/css/main.5e246454.css",
+    "static/js/main.3d30a71e.js"
   ]
 }
