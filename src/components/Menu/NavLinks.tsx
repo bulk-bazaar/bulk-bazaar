@@ -8,7 +8,7 @@ const links = [
   },
   {
     name: "All tasks",
-    path: "/",
+    path: "/bulk-bazaar",
   },
   {
     name: "Important tasks",

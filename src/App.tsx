@@ -23,21 +23,17 @@ const App: React.FC = () => {
 
 
   return (
-      <div>
-
-    <div className="bg-slate-200 min-h-screen text-slate-600 dark:bg-slate-900 dark:text-slate-400 xl:text-base sm:text-sm text-xs">
-
-      {modal.modalCreateTaskOpen && (
-        <ModalCreateTask
-          onClose={closeModalCreateTask}
-          nameForm="Add a task"
-          onConfirm={createNewTaskHandler}
-        />
-      )}
-      <Menu />
+    <div className="flex flex-col bg-slate-200 text-black">
+      {/*{modal.modalCreateTaskOpen && (*/}
+      {/*  <ModalCreateTask*/}
+      {/*    onClose={closeModalCreateTask}*/}
+      {/*    nameForm="Add a task"*/}
+      {/*    onConfirm={createNewTaskHandler}*/}
+      {/*  />*/}
+      {/*)}*/}
+      {/*<Menu />*/}
       <TasksSection />
     </div>
-      </div>
   );
 };
 

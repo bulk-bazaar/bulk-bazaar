@@ -16,7 +16,7 @@
 }
 
 .btn {
-    @apply bg-yellow-500 hover:bg-yellow-500 py-3 px-6 text-slate-50 rounded-lg w-auto transition dark:bg-yellow-600 dark:hover:bg-yellow-700;
+    @apply bg-yellow-500 hover:bg-yellow-500 py-2 w-full px-6 text-slate-50 rounded-lg transition dark:bg-yellow-600 dark:hover:bg-yellow-700;
 }
 
 .btn:active {

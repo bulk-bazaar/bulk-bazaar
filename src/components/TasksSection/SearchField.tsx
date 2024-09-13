@@ -55,8 +55,8 @@ const SearchField: React.FC = () => {
   }, [closeListResults, searchInputValue, showListResults]);
 
   return (
-    <div className="flex-1 col-span-3 row-start-2 md:pr-10">
-      <form className=" relative md:max-w-xs w-full" autoComplete="off">
+    <div className="flex flex-auto">
+      <form className="relative w-full mr-9" autoComplete="off">
         <label htmlFor="search" className="sr-only"></label>
         <input
           type="search"

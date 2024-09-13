@@ -9,15 +9,21 @@ import TaskOnly from "../Routes/TaskOnly";
 import TodaysTasks from "../Routes/TodaysTasks";
 import HeaderTasks from "./HeaderTasks";
 import Footer from "../Footer";
+import Login from "../Routes/login/Login";
+import SignUpPage from "../Routes/login/signup/SignUpPage";
+import ForgotPasswordPage from "../Routes/login/fogotpassword/ForgotPasswordPage";
 
 
 const TasksSection: React.FC = () => {
   return (
-    <main className=" pt-5 pb-8 sm:pb-16 px-3 md:px-8 md:w-full xl:w-10/12 xl:absolute xl:left-[16%] m-auto min-h-screen">
-      <HeaderTasks />
+    // <main className="flex w-full pt-5 pb-8 sm:pb-16 px-3 md:px-8 md:w-full xl:w-10/12 xl:absolute xl:left-[16%] m-auto min-h-screen">
+    // <main className="flex bg-yellow-600 p-2">
+    //   <HeaderTasks />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/today" element={<TodaysTasks />} />
+        <Route path="/bulk-bazaar" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/forgotpassword" element={<ForgotPasswordPage />} />
         <Route path="/important" element={<ImportantTasks />} />
         <Route
           path="/completed"
@@ -32,7 +38,7 @@ const TasksSection: React.FC = () => {
         <Route path="/task/:taskId" element={<TaskOnly />} />
         <Route path="*" element={<Navigate to="" />} />
       </Routes>
-    </main>
+    // {/*</main>*/}
   );
 };
 
