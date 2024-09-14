@@ -19,7 +19,7 @@ const TasksSection: React.FC = () => {
         //   <HeaderTasks />
         <div className={"pt-4"}>
             <Routes>
-                <Route path="/bulk-bazaar" element={<Home/>}/>
+                <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/signup" element={<SignUpPage/>}/>
                 <Route path="/forgotpassword" element={<ForgotPasswordPage/>}/>

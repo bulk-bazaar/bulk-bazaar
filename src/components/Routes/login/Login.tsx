@@ -60,7 +60,7 @@ const Login = () => {
                         </div>
 
                         <div className="text-sm">
-                            <a href={"/#/forgotpassword"} className="font-medium text-blue-600 hover:text-blue-500">
+                            <a href={"#/forgotpassword"} className="font-medium text-blue-600 hover:text-blue-500">
                                 Forgot your password?
                             </a>
                         </div>
@@ -78,7 +78,7 @@ const Login = () => {
 
                 <p className="mt-6 text-center text-sm">
                     Don't have an account?{' '}
-                    <a href={"/#/signup"} className="font-medium text-blue-600 hover:text-blue-500">
+                    <a href={"#/signup"} className="font-medium text-blue-600 hover:text-blue-500">
                         Sign up
                     </a>
                 </p>
