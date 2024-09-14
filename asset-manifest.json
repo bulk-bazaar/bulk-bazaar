@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.c5f6541f.css",
-    "main.js": "/static/js/main.6104a7cd.js",
-    "static/media/Sans_a4fran3.woff": "/static/media/Sans_a4fran3.89ca84830aac0d525315.woff",
-    "static/media/date.svg": "/static/media/date.a95ebe6e89803e2f48884bc7cd347bc0.svg",
-    "static/media/trash.svg": "/static/media/trash.65329eb4d02d742fbbb673d423203636.svg",
-    "index.html": "/index.html",
-    "static/media/star-line.svg": "/static/media/star-line.815700d21daf1678fd355eb34c323dc6.svg",
-    "static/media/options.svg": "/static/media/options.b23e257ac213477f9bf22b28d1837460.svg",
-    "static/media/view-1.svg": "/static/media/view-1.cdbcf33578dada6da236eba9cc31b36d.svg",
-    "static/media/edit.svg": "/static/media/edit.4275c76a6db68c66d7881e7067da982d.svg",
-    "static/media/check.svg": "/static/media/check.e07c35adf7078dbf2f813000e3437ad9.svg",
-    "static/media/x.svg": "/static/media/x.c8494eb2642084db18174e0aac7bfcf6.svg",
-    "main.c5f6541f.css.map": "/static/css/main.c5f6541f.css.map",
-    "main.6104a7cd.js.map": "/static/js/main.6104a7cd.js.map"
+    "main.css": "/bulk-bazaar/static/css/main.4dbd3d52.css",
+    "main.js": "/bulk-bazaar/static/js/main.2e09fc10.js",
+    "static/media/Sans_a4fran3.woff": "/bulk-bazaar/static/media/Sans_a4fran3.89ca84830aac0d525315.woff",
+    "static/media/date.svg": "/bulk-bazaar/static/media/date.a95ebe6e89803e2f48884bc7cd347bc0.svg",
+    "static/media/trash.svg": "/bulk-bazaar/static/media/trash.65329eb4d02d742fbbb673d423203636.svg",
+    "index.html": "/bulk-bazaar/index.html",
+    "static/media/star-line.svg": "/bulk-bazaar/static/media/star-line.815700d21daf1678fd355eb34c323dc6.svg",
+    "static/media/options.svg": "/bulk-bazaar/static/media/options.b23e257ac213477f9bf22b28d1837460.svg",
+    "static/media/view-1.svg": "/bulk-bazaar/static/media/view-1.cdbcf33578dada6da236eba9cc31b36d.svg",
+    "static/media/edit.svg": "/bulk-bazaar/static/media/edit.4275c76a6db68c66d7881e7067da982d.svg",
+    "static/media/check.svg": "/bulk-bazaar/static/media/check.e07c35adf7078dbf2f813000e3437ad9.svg",
+    "static/media/x.svg": "/bulk-bazaar/static/media/x.c8494eb2642084db18174e0aac7bfcf6.svg",
+    "main.4dbd3d52.css.map": "/bulk-bazaar/static/css/main.4dbd3d52.css.map",
+    "main.2e09fc10.js.map": "/bulk-bazaar/static/js/main.2e09fc10.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5f6541f.css",
-    "static/js/main.6104a7cd.js"
+    "static/css/main.4dbd3d52.css",
+    "static/js/main.2e09fc10.js"
   ]
 }
