@@ -24,15 +24,42 @@ const Menu: React.FC = () => {
       closeMenuHandler={closeMenuHandler}
       className="left-0"
     >
-      <header className="h-full flex flex-col">
-        <h1 className="font-bold text-center mt-8 text-lg tracking-wide hidden xl:block">
-          Bulk-Bazaar
-        </h1>
-        <BtnAddTask className="my-8 mx-4" />
-        <NavLinks classActive={classLinkActive} />
-        <Directories classActive={classLinkActive} />
-      </header>
-      <Footer />
+      {/*<header className="h-full flex flex-col">*/}
+      {/*  <h1 className="font-bold text-center mt-8 text-lg tracking-wide">*/}
+      {/*    Bulk-Bazaar*/}
+      {/*  </h1>*/}
+      {/*  <BtnAddTask className="my-8 mx-4" />*/}
+      {/*  <NavLinks classActive={classLinkActive} />*/}
+      {/*  <Directories classActive={classLinkActive} />*/}
+      {/*</header>*/}
+      {/*<Footer />*/}
+      <div>
+        <div className="flex items-center space-x-4 h-40 bg-slate-200 dark:bg-slate-900">
+          <img
+              className="w-12 h-12 rounded-full"
+              src="https://cdn-icons-png.freepik.com/512/146/146035.png"
+              alt="Profile"
+          />
+          <div>
+            <h2 className="text-lg font-semibold">John Doe</h2>
+            <p className="text-sm text-gray-400">johndoe@example.com</p>
+          </div>
+        </div>
+        <ul className="space-y-2 pt-8">
+          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer">
+            Home
+          </li>
+          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer">
+            My Account
+          </li>
+          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer">
+            My Orders
+          </li>
+          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer">
+            Refer & Earn
+          </li>
+        </ul>
+      </div>
     </LayoutMenus>
   );
 };

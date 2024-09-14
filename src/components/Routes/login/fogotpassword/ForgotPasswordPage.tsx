@@ -44,7 +44,7 @@ const ForgotPasswordPage = () => {
 
                 <p className="mt-6 text-center text-sm text-gray-600">
                     Remember your password?{' '}
-                    <a href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+                    <a href="/#/login" className="font-medium text-blue-600 hover:text-blue-500">
                         Go back to Login
                     </a>
                 </p>

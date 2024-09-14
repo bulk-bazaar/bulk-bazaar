@@ -18,22 +18,22 @@ const HeaderTasks: React.FC = () => {
     };
 
     return (
-        <header className="flex flex-row h-12 items-center">
+        <header className="flex flex-row justify-between h-12 items-center">
             <button
-                className="mr-6 w-8 h-8 xl:hidden"
+                className="mr-6 w-8 h-8"
                 onClick={openMenuHeaderHandler}
                 title="open menu"
             >
                 <MenuIcon/>
             </button>
-            <SearchField/>
+            {/*<SearchField/>*/}
             <div className="flex">
                 <Notification/>
                 <DarkMode/>
-                <BtnAddTask className="xl:block shadow-slate-400  dark:shadow-slate-900 sm:shadow-transparent"/>
-                <If condition={BackState}>
-                    <BackDrop BackState={BackState} BackSet={BackSet}/>
-                </If>
+                {/*<BtnAddTask className="xl:block shadow-slate-400  dark:shadow-slate-900 sm:shadow-transparent"/>*/}
+                {/*<If condition={BackState}>*/}
+                {/*    <BackDrop BackState={BackState} BackSet={BackSet}/>*/}
+                {/*</If>*/}
             </div>
         </header>
     );

@@ -13,12 +13,12 @@ const LayoutMenus: React.FC<{
     <>
       <div
         className={`bg-slate-100 h-screen w-60 xl:w-2/12 fixed dark:bg-slate-800 z-20 ${
-          menuOpen || mediaQueries.xl ? "block" : "hidden"
+          menuOpen ? "block" : "hidden"
         }`}
       >
         {children}
       </div>
-      {menuOpen && !mediaQueries.xl && (
+      {menuOpen && (
         <div
           className="fixed bg-slate-600/[.2] w-full h-full z-10 top-0 left-0"
           onClick={closeMenuHandler}
