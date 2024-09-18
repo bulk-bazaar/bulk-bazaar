@@ -1,20 +1,51 @@
-import React, { useState } from 'react';
+import React, {FormEvent, useState} from 'react';
+import ApiService from "../../../network/ApiService";
+import {useNavigate} from "react-router-dom";
+import _ from 'lodash';
 
 const SignUpPage = () => {
+    const navigate = useNavigate();
+    const [error, setError] = useState('');
     const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         confirmPassword: '',
     });
 
-    const handleChange = () => {
-        // setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleChange = (e:any) => {
+        setError('')
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = () => {
-        // e.preventDefault();
-        // Handle sign up logic here
-        console.log('Sign up details:', formData);
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if(formData.password !== formData.confirmPassword){
+            setError(`Password doesn't match!`)
+            return
+        }
+        const apiService = new ApiService();
+        const response1 = await apiService.get(`/api/users/${formData.email}`);
+        if (response1?.status === 200) {
+            if (response1?.data.length === 0){
+                try {
+                    const filteredformData = _.omitBy(
+                        _.omit(formData, ['confirmPassword']),
+                        (value) => value === null || value === undefined || value === ''  // Then remove empty values
+                    );
+
+                    await apiService.post(`/api/users`, filteredformData);
+                    navigate("/login")
+                }catch (e: any){
+                    setError(e.response.data.details[0].message);
+                }
+            }else{
+                setError("User already exist!");
+            }
+        } else {
+            setError("Error occurred!");
+        }
     };
 
     return (
@@ -24,8 +55,37 @@ const SignUpPage = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                            First name
+                            <label className={'text-red-400'}>*</label>
+                        </label>
+                        <input
+                            type="firstName"
+                            name="firstName"
+                            id="firstName"
+                            className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                            Last name
+                        </label>
+                        <input
+                            type="lastName"
+                            name="lastName"
+                            id="lastName"
+                            className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                             Email address
+                            <label className={'text-red-400'}>*</label>
                         </label>
                         <input
                             type="email"
@@ -41,6 +101,7 @@ const SignUpPage = () => {
                     <div>
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                             Password
+                            <label className={'text-red-400'}>*</label>
                         </label>
                         <input
                             type="password"
@@ -56,6 +117,7 @@ const SignUpPage = () => {
                     <div>
                         <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
                             Confirm Password
+                            <label className={'text-red-400'}>*</label>
                         </label>
                         <input
                             type="password"
@@ -84,9 +146,12 @@ const SignUpPage = () => {
                         Log in
                     </a>
                 </p>
+                <p className="mt-6 text-center text-sm text-red-400">
+                    {error}
+                </p>
             </div>
         </div>
-    );
+);
 };
 
 export default SignUpPage;

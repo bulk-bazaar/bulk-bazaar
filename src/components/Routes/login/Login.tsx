@@ -1,16 +1,28 @@
-import React, {FormEvent, FormEventHandler, useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import ApiService from "../../network/ApiService";
 
 const Login = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle login logic here
-        console.log('Email:', email, 'Password:', password);
-        navigate("/bulk-bazaar")
+        const apiService = new ApiService();
+        const response1 = await apiService.get(`/api/users/${email}`);
+        if (response1?.status === 200) {
+            if (response1?.data.length === 0){
+                setError('User is not registerd please signup')
+            } else if(response1.data[0].password === password){
+                navigate("/bulk-bazaar")
+            } else {
+                setError('Password is incorrect')
+            }
+        } else {
+            console.log("Error occurred!");
+        }
     };
 
     return (
@@ -19,6 +31,7 @@ const Login = () => {
                 <h2 className="text-2xl font-bold mb-6 text-center">Login to Your Account</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                             Email address
@@ -81,6 +94,9 @@ const Login = () => {
                     <a href={"#/signup"} className="font-medium text-blue-600 hover:text-blue-500">
                         Sign up
                     </a>
+                </p>
+                <p className="mt-6 text-center text-sm text-red-400">
+                    {error}
                 </p>
             </div>
         </div>
