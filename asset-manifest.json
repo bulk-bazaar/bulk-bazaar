@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bulk-bazaar/static/css/main.4dbd3d52.css",
-    "main.js": "/bulk-bazaar/static/js/main.1cad2b2d.js",
+    "main.css": "/bulk-bazaar/static/css/main.1b2410c5.css",
+    "main.js": "/bulk-bazaar/static/js/main.3dbe2ac0.js",
     "static/media/Sans_a4fran3.woff": "/bulk-bazaar/static/media/Sans_a4fran3.89ca84830aac0d525315.woff",
     "static/media/date.svg": "/bulk-bazaar/static/media/date.a95ebe6e89803e2f48884bc7cd347bc0.svg",
     "static/media/trash.svg": "/bulk-bazaar/static/media/trash.65329eb4d02d742fbbb673d423203636.svg",
@@ -12,11 +12,11 @@
     "static/media/edit.svg": "/bulk-bazaar/static/media/edit.4275c76a6db68c66d7881e7067da982d.svg",
     "static/media/check.svg": "/bulk-bazaar/static/media/check.e07c35adf7078dbf2f813000e3437ad9.svg",
     "static/media/x.svg": "/bulk-bazaar/static/media/x.c8494eb2642084db18174e0aac7bfcf6.svg",
-    "main.4dbd3d52.css.map": "/bulk-bazaar/static/css/main.4dbd3d52.css.map",
-    "main.1cad2b2d.js.map": "/bulk-bazaar/static/js/main.1cad2b2d.js.map"
+    "main.1b2410c5.css.map": "/bulk-bazaar/static/css/main.1b2410c5.css.map",
+    "main.3dbe2ac0.js.map": "/bulk-bazaar/static/js/main.3dbe2ac0.js.map"
   },
   "entrypoints": [
-    "static/css/main.4dbd3d52.css",
-    "static/js/main.1cad2b2d.js"
+    "static/css/main.1b2410c5.css",
+    "static/js/main.3dbe2ac0.js"
   ]
 }
