@@ -18,7 +18,8 @@ const App: React.FC = () => {
     };
 
     const createNewProductHandler = (product: Product) => {
-        dispatch(tasksActions.addProducts([product]));
+        // dispatch(tasksActions.addProducts([product]));
+        dispatch(tasksActions.fetchTodo('fds'))
     };
 
 
