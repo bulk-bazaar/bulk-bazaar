@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
-import { Task } from "../../interfaces";
+import {useEffect, useState} from "react";
+import {Product} from "../../components1/redux/interfaces";
 
 interface Props {
-  tasks: Task[];
+  products: Product[];
   done: boolean;
 }
 
-const useCompletedTasks = (props: Props): { tasks: Task[] } => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+const useCompletedTasks = (props: Props): { products: Product[] } => {
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const filteredTasks: Task[] = props.tasks.filter((task: Task) => {
+    const filteredProducts: Product[] = props.products.filter((product: Product) => {
       if (props.done) {
-        return task.completed;
+        return product.title;
       } else {
-        return !task.completed;
+        return !product.title;
       }
     });
-    setTasks(filteredTasks);
-  }, [props.tasks, props.done]);
+    setProducts(filteredProducts);
+  }, [props.products, props.done]);
 
-  return { tasks };
+  return { products };
 };
 
 export default useCompletedTasks;

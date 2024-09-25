@@ -20,13 +20,13 @@ const SearchResults: React.FC = () => {
     }
   }, [navigate, searchParams]);
 
-  const matchedTasks = useSearchQuery(currQueryParam);
+  const matchedProducts = useSearchQuery(currQueryParam);
 
   const title = `Results for "${currQueryParam}"`;
 
   useDescriptionTitle(title, title);
 
-  return <LayoutRoutes title={title} tasks={matchedTasks}></LayoutRoutes>;
+  return <LayoutRoutes title={title} products={matchedProducts}></LayoutRoutes>;
 };
 
 export default SearchResults;

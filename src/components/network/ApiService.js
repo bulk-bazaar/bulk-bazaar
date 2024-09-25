@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const BASEURL = "http://localhost:3001"
 class ApiService {
-    constructor(baseURL = "http://ec2-15-207-115-10.ap-south-1.compute.amazonaws.com:3000") {
+    // const BASEURL = "http://ec2-15-207-115-10.ap-south-1.compute.amazonaws.com:3000"
+    constructor(baseURL = BASEURL) {
         this.api = axios.create({
             baseURL: baseURL,
             headers: {

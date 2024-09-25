@@ -2,7 +2,7 @@
   "name": "bulk-bazaar",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gajendrakumartwinwal.github.io/bulk-bazaar",
+  "homepage": "https://bulk-bazaar.github.io/bulk-bazaar",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -39,7 +39,8 @@
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
     "react-spring": "^9.7.1",
-    "redux": "^4.2.1",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
     "sass": "^1.64.1",
     "swr": "^1.3.0",
     "typescript": "^4.9.4",

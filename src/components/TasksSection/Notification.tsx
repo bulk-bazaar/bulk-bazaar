@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import useVisibility from "../hooks/useVisibility";
 import { ReactComponent as IconBell } from "../../assets/bell.svg";
-import useTodayTasks from "../hooks/useTodayTasks";
+import useTodayProducts from "../hooks/useTodayProducts";
 import useCompletedTasks from "../hooks/useCompletedTasks";
 import { Link } from "react-router-dom";
 
@@ -16,10 +16,10 @@ const Notification: React.FC = () => {
     showElement: showNotifications,
   } = useVisibility([refBtnNotification.current!]);
 
-  const todaysTasks = useTodayTasks();
+  const todaysTasks = useTodayProducts();
 
-  const { tasks: uncompletedTasks } = useCompletedTasks({
-    tasks: todaysTasks,
+  const { products: uncompletedTasks } = useCompletedTasks({
+    products: todaysTasks,
     done: false,
   });
 
@@ -44,13 +44,13 @@ const Notification: React.FC = () => {
                 You have {uncompletedTasks.length} uncompleted tasks today:
               </span>
               <ul>
-                {tasksToShow.map((task) => (
-                  <li key={task.id} className="py-1">
+                {tasksToShow.map((product) => (
+                  <li key={product.id} className="py-1">
                     <Link
-                      to={`/task/${task.id}`}
+                      to={`/task/${product.id}`}
                       className="hover:text-slate-200 transition"
                     >
-                      {task.title}
+                      {product.title}
                     </Link>
                   </li>
                 ))}

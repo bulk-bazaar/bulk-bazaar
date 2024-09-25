@@ -12,7 +12,7 @@ const BtnToggleCompleted: React.FC<{
   const dispatch = useAppDispatch();
 
   const toggleTaskCompleted = (id: string) => {
-    dispatch(tasksActions.toggleTaskCompleted(id));
+    // dispatch(tasksActions.toggleTaskCompleted(id));
   };
 
   return (

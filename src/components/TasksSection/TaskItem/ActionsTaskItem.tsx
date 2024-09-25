@@ -23,7 +23,7 @@ const ActionsTaskItem: React.FC<{ task: Task; isListInView1: boolean }> = ({
         />
         <BtnMarkAsImportant taskId={task.id} taskImportant={task.important} />
         <BtnDeleteTask taskId={task.id} />
-        <BtnEditTask task={task} />
+        {/*<BtnEditTask product={task} />*/}
       </div>
     </>
   );

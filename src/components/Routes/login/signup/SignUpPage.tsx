@@ -1,7 +1,6 @@
 import React, {FormEvent, useState} from 'react';
 import ApiService from "../../../network/ApiService";
 import {useNavigate} from "react-router-dom";
-import _ from 'lodash';
 
 const SignUpPage = () => {
     const navigate = useNavigate();
@@ -26,22 +25,20 @@ const SignUpPage = () => {
             return
         }
         const apiService = new ApiService();
-        const response1 = await apiService.get(`/api/users/${formData.email}`);
+        const response1 = await apiService.post(`/api/users/signup`, {
+            email: formData.email,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            password: formData.password,
+        });
         if (response1?.status === 200) {
-            if (response1?.data.length === 0){
-                try {
-                    const filteredformData = _.omitBy(
-                        _.omit(formData, ['confirmPassword']),
-                        (value) => value === null || value === undefined || value === ''  // Then remove empty values
-                    );
-
-                    await apiService.post(`/api/users`, filteredformData);
-                    navigate("/login")
-                }catch (e: any){
-                    setError(e.response.data.details[0].message);
-                }
-            }else{
-                setError("User already exist!");
+            switch (response1.data.type){
+                case 'USER_SIGNED_UP':
+                    navigate(`/verifyOTP/${formData.email}`)
+                    break
+                case 'USER_ALREADY_EXIST':
+                    setError(response1.data.message)
+                    break
             }
         } else {
             setError("Error occurred!");
@@ -55,7 +52,7 @@ const SignUpPage = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="firstName" className="block text-sm font-medium">
                             First name
                             <label className={'text-red-400'}>*</label>
                         </label>
@@ -70,7 +67,7 @@ const SignUpPage = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="lastName" className="block text-sm font-medium">
                             Last name
                         </label>
                         <input
@@ -83,7 +80,7 @@ const SignUpPage = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="email" className="block text-sm font-medium">
                             Email address
                             <label className={'text-red-400'}>*</label>
                         </label>
@@ -99,7 +96,7 @@ const SignUpPage = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="password" className="block text-sm font-medium">
                             Password
                             <label className={'text-red-400'}>*</label>
                         </label>
@@ -115,7 +112,7 @@ const SignUpPage = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="confirmPassword" className="block text-sm font-medium">
                             Confirm Password
                             <label className={'text-red-400'}>*</label>
                         </label>
@@ -140,7 +137,7 @@ const SignUpPage = () => {
                     </div>
                 </form>
 
-                <p className="mt-6 text-center text-sm text-gray-600">
+                <p className="mt-6 text-center text-sm">
                     Already have an account?{' '}
                     <a href="#/login" className="font-medium text-blue-600 hover:text-blue-500">
                         Log in

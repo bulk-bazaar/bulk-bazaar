@@ -9,7 +9,7 @@ const BtnDeleteTask: React.FC<{ taskId: string }> = ({ taskId }) => {
   const dispatch = useAppDispatch();
 
   const removeTaskHandler = () => {
-    dispatch(tasksActions.removeTask(taskId));
+    // dispatch(tasksActions.removeProduct(taskId));
   };
   return (
     <>

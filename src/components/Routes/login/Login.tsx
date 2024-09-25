@@ -11,17 +11,29 @@ const Login = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const apiService = new ApiService();
-        const response1 = await apiService.get(`/api/users/${email}`);
+        const response1 = await apiService.post(`/api/users/login`, {
+            email: email,
+            password: password,
+        });
         if (response1?.status === 200) {
-            if (response1?.data.length === 0){
-                setError('User is not registerd please signup')
-            } else if(response1.data[0].password === password){
-                navigate("/bulk-bazaar")
-            } else {
-                setError('Password is incorrect')
+            switch (response1.data.type){
+                case 'USER_LOGGED_IN':
+                    navigate("/bulk-bazaar")
+                    break
+                case 'USER_PENDING_OTP_VERIFICATION':
+                    break
+                case 'USER_PASSWORD_INCORRECT':
+                    setError(response1.data.message)
+                    break
+                case 'USER_DOES_NOT_EXISTS':
+                    setError(response1.data.message)
+                    break
+                default :
+                    setError(response1?.data?.message)
+                    break
             }
         } else {
-            console.log("Error occurred!");
+            setError(response1?.data?.message);
         }
     };
 
@@ -33,7 +45,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
 
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="email" className="block text-sm font-medium">
                             Email address
                         </label>
                         <input
@@ -47,7 +59,7 @@ const Login = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="password" className="block text-sm font-medium">
                             Password
                         </label>
                         <input
@@ -65,9 +77,9 @@ const Login = () => {
                             <input
                                 id="remember_me"
                                 type="checkbox"
-                                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                className="h-4 w-4 focus:ring-blue-500 border-gray-300 rounded"
                             />
-                            <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
+                            <label htmlFor="remember_me" className="ml-2 block text-sm">
                                 Remember me
                             </label>
                         </div>

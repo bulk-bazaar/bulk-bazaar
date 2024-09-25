@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../store/hooks";
 import { tasksActions } from "../../../store/Tasks.store";
-import ModalCreateTask from "../../Utilities/ModalTask";
+import ModalCreateProduct from "../../Utilities/ModalTask";
 import { ReactComponent as OptionsSvg } from "../../../assets/options.svg";
 import { Task } from "../../../interfaces";
+import {Product} from "../../../components1/redux/interfaces";
 
-const BtnEditTask: React.FC<{ task: Task }> = ({ task }) => {
+const BtnEditTask: React.FC<{ product: Product }> = ({ product }) => {
   const [modalEditTaskOpen, setModalEditTaskOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
@@ -17,8 +18,8 @@ const BtnEditTask: React.FC<{ task: Task }> = ({ task }) => {
     setModalEditTaskOpen(true);
   };
 
-  const editTaskHandler = (task: Task) => {
-    dispatch(tasksActions.editTask(task));
+  const editTaskHandler = (product: Product) => {
+    // dispatch(tasksActions.editTask(task));
   };
 
   return (
@@ -31,9 +32,9 @@ const BtnEditTask: React.FC<{ task: Task }> = ({ task }) => {
         <OptionsSvg className="w-4 sm:w-5 h-4 sm:h-5" />
       </button>
       {modalEditTaskOpen && (
-        <ModalCreateTask
+        <ModalCreateProduct
           onClose={closeModalEditTask}
-          task={task}
+          product={product}
           nameForm="Edit task"
           onConfirm={editTaskHandler}
         />

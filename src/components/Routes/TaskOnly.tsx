@@ -4,6 +4,7 @@ import { Task } from "../../interfaces";
 import { useAppSelector } from "../../store/hooks";
 import useDescriptionTitle from "../hooks/useDescriptionTitle";
 import LayoutRoutes from "../Utilities/LayoutRoutes";
+import {Product} from "../../components1/redux/interfaces";
 
 const TaskOnly: React.FC = () => {
   const params = useParams();
@@ -11,7 +12,7 @@ const TaskOnly: React.FC = () => {
 
   const tasks = useAppSelector((store) => store.tasks.tasks);
 
-  const [matchedTask, setMatchedTask] = useState<Task[]>([]);
+  const [matchedProduct, setMatchedProduct] = useState<Product[]>([]);
 
   useEffect(() => {
     const taskId = params.taskId;
@@ -19,14 +20,14 @@ const TaskOnly: React.FC = () => {
     if (!filteredTask.length) {
       navigate("/");
     }
-    setMatchedTask(filteredTask);
+    setMatchedProduct(filteredTask);
   }, [navigate, params.taskId, tasks]);
 
-  const title = matchedTask.length ? matchedTask[0].title : "";
+  const title = matchedProduct.length ? matchedProduct[0].title : "";
 
   useDescriptionTitle(`Searching for ${title}`, "Task " + title);
 
-  return <LayoutRoutes title={title} tasks={matchedTask} />;
+  return <LayoutRoutes title={title} products={matchedProduct} />;
 };
 
 export default TaskOnly;

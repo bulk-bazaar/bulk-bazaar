@@ -1,37 +1,37 @@
 import React from "react";
 import { useAppSelector } from "../../store/hooks";
 import useCompletedTasks from "../hooks/useCompletedTasks";
-import useTodayTasks from "../hooks/useTodayTasks";
+import useTodayProducts from "../hooks/useTodayProducts";
 
 const TasksDone: React.FC = () => {
-  const todaysTasks = useTodayTasks();
-  const tasks = useAppSelector((state) => state.tasks.tasks);
-  const { tasks: todayTasksDone } = useCompletedTasks({
-    tasks: todaysTasks,
+  const todaysProducts = useTodayProducts();
+  const tasks = useAppSelector((state) => state.products.tasks);
+  const { products: todayTasksDone } = useCompletedTasks({
+    products: todaysProducts,
     done: true,
   });
-  const { tasks: allTasksDone } = useCompletedTasks({
-    tasks: tasks,
+  const { products: allTasksDone } = useCompletedTasks({
+    products: tasks,
     done: true,
   });
 
   const percentageTodayTasks =
-    (todayTasksDone.length * 100) / todaysTasks.length;
+    (todayTasksDone.length * 100) / todaysProducts.length;
 
   const percentageAllTasks = (allTasksDone.length * 100) / tasks.length;
 
-  const todaysTasksToShow = todaysTasks.slice(0, 3);
+  const todaysTasksToShow = todaysProducts.slice(0, 3);
 
-  const showMore = todaysTasks.length > todaysTasksToShow.length;
+  const showMore = todaysProducts.length > todaysTasksToShow.length;
 
   return (
     <>
       <div className="hidden lg:block">
-      {todaysTasks.length !== 0 && (
+      {todaysProducts.length !== 0 && (
         <div className="mb-8" >
           <span className="flex justify-between mb-5">
             <span>Tasks today</span> {todayTasksDone.length}/
-            {todaysTasks.length}
+            {todaysProducts.length}
           </span>
           <div className="barProgress">
             <div style={{ width: percentageTodayTasks + "%" }}></div>

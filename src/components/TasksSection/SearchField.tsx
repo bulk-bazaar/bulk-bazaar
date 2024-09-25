@@ -1,21 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
-import { createSearchParams, Link, useNavigate } from "react-router-dom";
-import { ReactComponent as Search } from "../../assets/search.svg";
-import { Task } from "../../interfaces";
-import useDate from "../hooks/useDate";
+import React, {useEffect, useRef, useState} from "react";
+import {createSearchParams, Link, useNavigate} from "react-router-dom";
+import {ReactComponent as Search} from "../../assets/search.svg";
 import useSearchQuery from "../hooks/useSearchQuery";
 import useVisibility from "../hooks/useVisibility";
+import {Product} from "../../components1/redux/interfaces";
 
-const ItemSearch: React.FC<{ task: Task }> = ({ task }) => {
-  const dateFormated = useDate(task.date);
+const ItemSearch: React.FC<{ product: Product }> = ({ product }) => {
+  // const dateFormated = useDate(product.date);
   return (
-    <li key={task.id} className="py-2">
+    <li key={product.id} className="py-2">
       <Link
-        to={`/task/${task.id}`}
+        to={`/task/${product.id}`}
         className="flex justify-between transition hover:text-rose-500 dark:hover:text-slate-200"
       >
-        <span>{task.title}</span>
-        <span>{dateFormated}</span>
+        <span>{product.title}</span>
+        <span>{product.description}</span>
       </Link>
     </li>
   );
@@ -29,7 +28,7 @@ const SearchField: React.FC = () => {
 
   const matchedTasks = useSearchQuery(searchInputValue);
 
-  const tasks = matchedTasks.slice(0, 4);
+  const products = matchedTasks.slice(0, 4);
 
   const {
     elementIsVisible: listResultsVisible,
@@ -71,11 +70,11 @@ const SearchField: React.FC = () => {
         <Search className="absolute w-4 sm:w-5 right-4 top-3.5 text-slate-400" />
         {listResultsVisible && (
           <div className="absolute bg-slate-100 rounded-md w-full top-14 p-3 dark:bg-slate-800 z-10">
-            {tasks.length ? (
+            {products.length ? (
               <>
                 <ul>
-                  {tasks.map((task) => (
-                    <ItemSearch key={task.id} task={task} />
+                  {products.map((product) => (
+                    <ItemSearch key={product.id} product={product} />
                   ))}
                 </ul>
                 <button

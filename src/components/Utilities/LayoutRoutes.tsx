@@ -1,14 +1,14 @@
 import React, {useState} from "react";
-import {Task} from "../../interfaces";
 import {useAppDispatch} from "../../store/hooks";
 import TaskItem from "../TasksSection/TaskItem/TaskItem";
+import {Product} from "../../components1/redux/interfaces";
 
 type Props = {
     title: string;
-    tasks: Task[] | [];
+    products: Product[] | [];
 };
 
-const LayoutRoutes: React.FC<Props> = ({title, tasks}) => {
+const LayoutRoutes: React.FC<Props> = ({title, products}) => {
     const [isListInView1, setIsListInView1] = useState<boolean>(true);
 
     const dispatch = useAppDispatch();
@@ -30,8 +30,8 @@ const LayoutRoutes: React.FC<Props> = ({title, tasks}) => {
                             : "2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 items-end"
                     }`}
                 >
-                    {tasks.map((task) => (
-                        <TaskItem key={task.id} isListInView1={isListInView1} task={task}/>
+                    {products.map((product) => (
+                        <TaskItem key={product.id} isListInView1={isListInView1} product={product}/>
                     ))}
                 </ul>
             </section>

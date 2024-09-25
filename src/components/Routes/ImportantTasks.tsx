@@ -3,20 +3,21 @@ import { Task } from "../../interfaces";
 import { useAppSelector } from "../../store/hooks";
 import useDescriptionTitle from "../hooks/useDescriptionTitle";
 import LayoutRoutes from "../Utilities/LayoutRoutes";
+import {Product} from "../../components1/redux/interfaces";
 
 const ImportantTasks: React.FC = () => {
   const tasks = useAppSelector((state) => state.tasks.tasks);
-  const [importantTasks, setImportantTasks] = useState<Task[]>([]);
+  const [importantProducts, setImportantTasks] = useState<Product[]>([]);
 
   useEffect(() => {
-    const filteredTasks: Task[] = tasks.filter((task: Task) => task.important);
-    setImportantTasks(filteredTasks);
+    const filteredProducts: Product[] = tasks.filter((product: Product) => product.minimumQuantity);
+    setImportantTasks(filteredProducts);
   }, [tasks]);
 
   useDescriptionTitle("Tasks marked as important", "Important tasks");
 
   return (
-    <LayoutRoutes title="Important tasks" tasks={importantTasks}></LayoutRoutes>
+    <LayoutRoutes title="Important tasks" products={importantProducts}></LayoutRoutes>
   );
 };
 

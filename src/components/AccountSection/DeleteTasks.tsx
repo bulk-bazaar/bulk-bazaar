@@ -11,7 +11,7 @@ const DeleteTasks: React.FC = () => {
   const [showModal, setIsModalShown] = useState<boolean>(false);
 
   const deleteAllDataHandler = () => {
-    dispatch(tasksActions.deleteAllData());
+    // dispatch(tasksActions.deleteAllData());
   };
 
   return (

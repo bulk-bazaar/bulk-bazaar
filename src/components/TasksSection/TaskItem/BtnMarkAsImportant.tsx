@@ -10,7 +10,7 @@ const BtnMarkAsImportant: React.FC<{
   const dispatch = useAppDispatch();
 
   const markAsImportantHandler = () => {
-    dispatch(tasksActions.markAsImportant(taskId));
+    // dispatch(tasksActions.markAsImportant(taskId));
   };
 
   return (

@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import { Task } from "../../interfaces";
-import { useAppSelector } from "../../store/hooks";
+import {useEffect, useState} from "react";
+import {useAppSelector} from "../../store/hooks";
+import {Product} from "../../components1/redux/interfaces";
 
 const useSearchQuery = (searchQuery: string) => {
-  const tasks = useAppSelector((state) => state.tasks.tasks);
+  const products = useAppSelector((state) => state.products);
 
-  const [matchedTasks, setMatchedTasks] = useState<Task[]>([]);
+  const [matchedProducts, setMatchedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const filteredTasks = tasks.filter((task: Task) => {
-      return task.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const filteredTasks = products.filter((product: Product) => {
+      return product.title.toLowerCase().includes(searchQuery.toLowerCase());
     });
     if (searchQuery.trim().length) {
-      setMatchedTasks(filteredTasks);
+      setMatchedProducts(filteredTasks);
     } else {
-      setMatchedTasks([]);
+      setMatchedProducts([]);
     }
-  }, [searchQuery, tasks]);
+  }, [searchQuery, products]);
 
-  return matchedTasks;
+  return matchedProducts;
 };
 
 export default useSearchQuery;

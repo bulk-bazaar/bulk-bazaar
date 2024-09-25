@@ -1,6 +1,5 @@
 import React from "react";
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
-import Directory from "../Routes/Directory";
 import DoneTasks from "../Routes/DoneTasks";
 import Home from "../Routes/Home";
 import ImportantTasks from "../Routes/ImportantTasks";
@@ -9,9 +8,10 @@ import TaskOnly from "../Routes/TaskOnly";
 import Login from "../Routes/login/Login";
 import SignUpPage from "../Routes/login/signup/SignUpPage";
 import ForgotPasswordPage from "../Routes/login/fogotpassword/ForgotPasswordPage";
+import VerifyOTPPage from "../Routes/login/verifyotp/VerifyOTP";
 
 
-const TasksSection: React.FC = () => {
+const ProductsSection: React.FC = () => {
     const navigate = useNavigate();
     return (
         // <main className="flex w-full pt-5 pb-8 sm:pb-16 px-3 md:px-8 md:w-full xl:w-10/12 xl:absolute xl:left-[16%] m-auto min-h-screen">
@@ -21,6 +21,7 @@ const TasksSection: React.FC = () => {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/verifyOTP/:email" element={<VerifyOTPPage/>}/>
                 <Route path="/signup" element={<SignUpPage/>}/>
                 <Route path="/forgotpassword" element={<ForgotPasswordPage/>}/>
                 <Route path="/important" element={<ImportantTasks/>}/>
@@ -33,7 +34,7 @@ const TasksSection: React.FC = () => {
                     element={<DoneTasks done={false} title="Uncompleted tasks"/>}
                 />
                 <Route path="/results" element={<SearchResults/>}/>
-                <Route path="/dir/:dir" element={<Directory/>}/>
+                {/*<Route path="/dir/:dir" element={<Directory/>}/>*/}
                 <Route path="/task/:taskId" element={<TaskOnly/>}/>
                 <Route path="*" element={<Navigate to=""/>}/>
             </Routes>
@@ -42,4 +43,4 @@ const TasksSection: React.FC = () => {
     );
 };
 
-export default TasksSection;
+export default ProductsSection;
