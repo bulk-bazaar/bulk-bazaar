@@ -1,31 +1,37 @@
 import React, {useState} from 'react';
+import {userActions} from "../../../store/User.store";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 
 const SellerRequestPage: React.FC = () => {
     const [pancard, setPancard] = useState('');
     const [amount, setAmount] = useState('5000'); // Example security amount
     const [termsAccepted, setTermsAccepted] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
+    const dispatch = useAppDispatch();
+    const user = useAppSelector((state) => state.user.user);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (termsAccepted && pancard) {
-            setSubmitted(true);
+            dispatch(userActions.requestSeller(pancard))
         } else {
             alert('Please fill in all details and accept the terms.');
         }
     };
 
-    if (submitted) {
+    if (user.isSeller === 'approved') {
+        return (
+            <div className="flex flex-col items-center justify-center h-screen">
+                <h2 className="text-2xl font-bold mb-4">Request Approved! Successfully!</h2>
+                <p className="mb-6">Thank you for your request. You can start selling products.</p>
+            </div>
+        );
+    }
+
+    if (user.isSeller === 'pending') {
         return (
             <div className="flex flex-col items-center justify-center h-screen">
                 <h2 className="text-2xl font-bold mb-4">Request Submitted Successfully!</h2>
                 <p className="mb-6">Thank you for your request. We will process it shortly.</p>
-                <button
-                    onClick={() => setSubmitted(false)}
-                    className="px-6 py-2 border border-gray-500 rounded-md focus:outline-none"
-                >
-                    Raise Another Request
-                </button>
             </div>
         );
     }

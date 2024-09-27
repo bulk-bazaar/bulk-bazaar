@@ -2,6 +2,7 @@ import axios from 'axios';
 import {store} from "./../../store/index";
 
 const BASEURL = "http://localhost:3001"
+// const BASEURL = "http://192.168.31.44:3001"
 class ApiService {
     // const BASEURL = "http://ec2-15-207-115-10.ap-south-1.compute.amazonaws.com:3000"
     constructor(baseURL = BASEURL) {

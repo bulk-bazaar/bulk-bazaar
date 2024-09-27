@@ -14,6 +14,7 @@ export interface Product {
 export interface User {
     id?: string,
     email: string,
+    isSeller: string,
     firstName: string,
     lastName: number,
 }
@@ -21,4 +22,14 @@ export interface User {
 export interface CartItem {
     product: Product,
     quantity: number,
+}
+
+
+export interface Order {
+    id: number,
+    userId: number,
+    totalAmount: number,
+    status: string,
+    createdAt: Date,
+    updatedAt: Date,
 }

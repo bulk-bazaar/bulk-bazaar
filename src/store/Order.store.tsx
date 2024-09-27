@@ -1,12 +1,14 @@
-import {CartItem} from "../components1/redux/interfaces";
+import {CartItem, Order} from "../components1/redux/interfaces";
 import {createAppSlice} from "./createAppSlice";
 import ApiService from "../components1/network/ApiService";
 
 const initialState: {
     cartItems: CartItem[];
+    orders: Order[];
     loading: boolean;
 } = {
     cartItems: [],
+    orders: [],
     loading: false
 };
 
@@ -44,6 +46,25 @@ const ordersSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
+                },
+            }
+        ),
+        fetchOrders: create.asyncThunk(
+            async (f: string, thunkApi) => {
+                const apiService = new ApiService();
+                const response = await apiService.get(`/api/orders`);
+                return response?.data
+            },
+            {
+                pending: (state) => {
+                    state.loading = true
+                },
+                rejected: (state, action) => {
+                    state.loading = false
+                },
+                fulfilled: (state, action) => {
+                    state.loading = false
+                    state.orders = action.payload
                 },
             }
         ),

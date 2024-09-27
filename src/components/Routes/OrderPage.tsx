@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
+import {ordersActions} from "../../store/Order.store";
 
 // Sample order data (your data)
 const ordersData = [
@@ -62,8 +64,12 @@ const groupOrdersByDate = (orders: any) => {
 };
 
 const OrderPage = () => {
-    const groupedOrders = groupOrdersByDate(ordersData);
-
+    const dispatch = useAppDispatch();
+    const orders = useAppSelector((state) => state.orders.orders);
+    const groupedOrders = groupOrdersByDate(orders);
+    useEffect(() => {
+        dispatch(ordersActions.fetchOrders(''))
+    }, []);
     return (
         <div className="min-h-screen flex items-center justify-center">
             <div className="container mx-auto px-4 py-8">

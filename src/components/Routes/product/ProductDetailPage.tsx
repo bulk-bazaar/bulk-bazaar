@@ -116,14 +116,15 @@ const ProductDetailPage: React.FC = () => {
                     <div className="mb-6">
                         {cartAdded ? (
                             <p className="text-green-600 font-semibold">Added to cart!</p>
-                        ) : (
-                            <button
-                                onClick={handleAddToCart}
-                                className="bg-blue-600 text-white py-3 px-6 font-semibold hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
-                            >
-                                Add to Cart
-                            </button>
-                        )}
+                        ) : product.soldQuantity >= product.maximumQuantity ?
+                            <p className="text-green-600 font-semibold">Out of stock!</p>  : (
+                                <button
+                                    onClick={handleAddToCart}
+                                    className="bg-blue-600 text-white py-3 px-6 font-semibold hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                                >
+                                    Add to Cart
+                                </button>
+                            )}
                     </div>
                 </div>
             </div>
@@ -133,7 +134,7 @@ const ProductDetailPage: React.FC = () => {
                 <h2 className="text-xl font-semibold dark:text-slate-200 mb-4">
                     Product Status
                 </h2>
-                <div className="w-full bg-gray-200 rounded-full h-6 mb-4 dark:bg-gray-600">
+                <div className="bg-gray-200 rounded-full h-6 mb-4 dark:bg-gray-600">
                     <div
                         className="bg-green-500 h-6 rounded-full"
                         style={{ width: `${progressPercentage}%` }}

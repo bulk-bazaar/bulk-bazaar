@@ -1,5 +1,5 @@
 import React from "react";
-import {useAppDispatch} from "../../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {ReactComponent as MenuIcon} from "../../../assets/view-1.svg";
 import {ReactComponent as EditIcon} from "../../../assets/edit.svg";
 import {menusActions} from "../../../store/Menu.store";
@@ -10,6 +10,7 @@ import CartIcon from "./CartIcon";
 
 const Toolbar: React.FC = () => {
     const dispatch = useAppDispatch();
+    const isSeller = useAppSelector((state) => state.user.user.isSeller);
     const openNewTaskHandler = () => {
         dispatch(modalActions.openModalCreateTask());
     };
@@ -27,7 +28,7 @@ const Toolbar: React.FC = () => {
             </div>
             <div className={"flex flex-row items-center"}>
                 <CartIcon />
-                <HeaderItem onClick={openNewTaskHandler} icon={EditIcon}/>
+                {isSeller === 'approved' ? <HeaderItem onClick={openNewTaskHandler} icon={EditIcon}/>: undefined}
                 <Switch value={isCurrentDarkmode} onChange={e => setIsCurrentDarkmode(!isCurrentDarkmode)}/>
             </div>
         </header>
