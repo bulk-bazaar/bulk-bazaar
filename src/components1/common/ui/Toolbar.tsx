@@ -6,6 +6,7 @@ import {menusActions} from "../../../store/Menu.store";
 import useMode from "../hooks/useMode";
 import {Switch} from "@mui/material";
 import {modalActions} from "../../../store/Modal.store";
+import CartIcon from "./CartIcon";
 
 const Toolbar: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ const Toolbar: React.FC = () => {
                 <h1>Bulk Market</h1>
             </div>
             <div className={"flex flex-row items-center"}>
+                <CartIcon />
                 <HeaderItem onClick={openNewTaskHandler} icon={EditIcon}/>
                 <Switch value={isCurrentDarkmode} onChange={e => setIsCurrentDarkmode(!isCurrentDarkmode)}/>
             </div>

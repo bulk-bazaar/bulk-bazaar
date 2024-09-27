@@ -1,15 +1,21 @@
 import React, {FormEvent, useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import ApiService from "../../network/ApiService";
+import ApiService from "../../../components1/network/ApiService";
+import {userActions} from "../../../store/User.store";
+import {useAppDispatch} from "../../../store/hooks";
+import Loader from "../../../components1/common/ui/Loader";
 
 const Login = () => {
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
         const apiService = new ApiService();
         const response1 = await apiService.post(`/api/users/login`, {
             email: email,
@@ -18,6 +24,8 @@ const Login = () => {
         if (response1?.status === 200) {
             switch (response1.data.type){
                 case 'USER_LOGGED_IN':
+                    dispatch(userActions.setToken(response1.headers["authorization"]))
+                    dispatch(userActions.setUser(response1.data.user))
                     navigate("/bulk-bazaar")
                     break
                 case 'USER_PENDING_OTP_VERIFICATION':
@@ -35,9 +43,10 @@ const Login = () => {
         } else {
             setError(response1?.data?.message);
         }
+        setLoading(false);
     };
 
-    return (
+    return isLoading ? <Loader/>: (
         <div className="min-h-screen flex items-center justify-center">
             <div className="p-8 rounded w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center">Login to Your Account</h2>

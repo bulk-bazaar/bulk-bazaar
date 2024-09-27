@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Menu from "./components/Menu/Menu";
 import ProductsSection from "./components/TasksSection/ProductsSection";
 import ModalCreateProduct from "./components/Utilities/ModalTask";
 import {useAppDispatch, useAppSelector} from "./store/hooks";
 import {modalActions} from "./store/Modal.store";
-import {tasksActions} from "./store/Tasks.store";
+import {tasksActions} from "./store/Product.store";
 import Toolbar from "./components1/common/ui/Toolbar";
 import {Product} from "./components1/redux/interfaces";
 
@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
     const createNewProductHandler = (product: Product) => {
         // dispatch(tasksActions.addProducts([product]));
-        dispatch(tasksActions.fetchTodo('fds'))
+        dispatch(tasksActions.addProducts(product))
     };
 
 

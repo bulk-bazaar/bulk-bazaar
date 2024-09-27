@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useAppDispatch} from "../../store/hooks";
-import TaskItem from "../TasksSection/TaskItem/TaskItem";
+import TaskItem from "../TasksSection/TaskItem/ProductItem";
 import {Product} from "../../components1/redux/interfaces";
 
 type Props = {

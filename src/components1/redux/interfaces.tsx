@@ -11,3 +11,14 @@ export interface Product {
     sellerId: string
     approved: boolean
 }
+export interface User {
+    id?: string,
+    email: string,
+    firstName: string,
+    lastName: number,
+}
+
+export interface CartItem {
+    product: Product,
+    quantity: number,
+}

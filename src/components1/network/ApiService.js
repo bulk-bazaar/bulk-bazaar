@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {store} from "./../../store/index";
 
 const BASEURL = "http://localhost:3001"
 class ApiService {
@@ -9,6 +10,19 @@ class ApiService {
             headers: {
                 'Content-Type': 'application/json',
             },
+        });
+        // Add a request interceptor to include the Authorization header
+        this.api.interceptors.request.use((config) => {
+            const state = store.getState();
+            const token = state.user?.token; // Access the token from Redux store (adjust path as needed)
+
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`;
+            }
+
+            return config;
+        }, (error) => {
+            return Promise.reject(error);
         });
     }
 

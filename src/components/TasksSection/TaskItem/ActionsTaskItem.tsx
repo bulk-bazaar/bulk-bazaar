@@ -4,9 +4,10 @@ import BtnEditTask from "./BtnEditTask";
 import BtnMarkAsImportant from "./BtnMarkAsImportant";
 import BtnDeleteTask from "./BtnDeleteTask";
 import BtnToggleCompleted from "./BtnToggleCompleted";
+import {Product} from "../../../components1/redux/interfaces";
 
-const ActionsTaskItem: React.FC<{ task: Task; isListInView1: boolean }> = ({
-  task,
+const ActionsTaskItem: React.FC<{ product: Product; isListInView1: boolean }> = ({
+                                                                                     product,
   isListInView1,
 }) => {
   return (
@@ -17,12 +18,12 @@ const ActionsTaskItem: React.FC<{ task: Task; isListInView1: boolean }> = ({
         }`}
       >
         <BtnToggleCompleted
-          taskCompleted={task.completed}
-          taskId={task.id}
+          taskCompleted={product.title == 'completed'}
+          taskId={'product.id'}
           isListInView1={isListInView1}
         />
-        <BtnMarkAsImportant taskId={task.id} taskImportant={task.important} />
-        <BtnDeleteTask taskId={task.id} />
+        <BtnMarkAsImportant taskId={'task.id'} taskImportant={'task.important' == product.id} />
+        <BtnDeleteTask taskId={'task.id'} />
         {/*<BtnEditTask product={task} />*/}
       </div>
     </>

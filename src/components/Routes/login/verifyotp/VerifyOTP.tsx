@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
-import ApiService from "../../../network/ApiService";
+import ApiService from "../../../../components1/network/ApiService";
 import {useNavigate, useParams} from "react-router-dom";
+import Loader from "../../../../components1/common/ui/Loader";
 
 const VerifyOTPPage = () => {
     const params = useParams();
     const navigate = useNavigate();
+    const [isLoading, setLoading] = useState(false);
 
     const [error, setError] = useState('');
     const [otp, setOTP] = useState('');
 
     const handleSubmit = async () => {
+        setLoading(true);
         const apiService = new ApiService();
         const response1 = await apiService.post(`/api/users//otp/verify`, {
             email: params.email,
@@ -27,9 +30,10 @@ const VerifyOTPPage = () => {
         } else {
             setError("Error occurred!");
         }
+        setLoading(false);
     };
 
-    return (
+    return isLoading ? <Loader/>:  (
         <div className="min-h-screen flex items-center justify-center">
             <div className="p-8 rounded w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center">Verify</h2>

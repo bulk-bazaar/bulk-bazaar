@@ -2,6 +2,7 @@ import React from "react";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {menusActions} from "../../store/Menu.store";
 import LayoutMenus from "../Utilities/LayoutMenus";
+import {useNavigate} from "react-router-dom";
 
 
 const classLinkActive =
@@ -9,8 +10,9 @@ const classLinkActive =
 
 const Menu: React.FC = () => {
   const menuOpen = useAppSelector((state) => state.menu.menuHeaderOpened);
+  const user = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const closeMenuHandler = () => {
     dispatch(menusActions.closeMenuHeader());
   };
@@ -37,22 +39,31 @@ const Menu: React.FC = () => {
               alt="Profile"
           />
           <div>
-            <h2 className="text-lg font-semibold">John Doe</h2>
-            <p className="text-sm text-gray-400">johndoe@example.com</p>
+            <h2 className="text-lg font-semibold">{user.firstName}.{user.lastName}</h2>
+            <p className="text-sm text-gray-400 break-all">{user.email}</p>
           </div>
         </div>
         <ul className="space-y-2 pt-8">
-          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer">
+          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer" onClick={() => {
+            navigate("/")
+            closeMenuHandler()
+          }}>
             Home
           </li>
           <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer">
             My Account
           </li>
-          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer">
+          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer" onClick={() => {
+            navigate("/orders")
+            closeMenuHandler()
+          }}>
             My Orders
           </li>
-          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer">
-            Refer & Earn
+          <li className="hover:bg-gray-700 rounded-lg p-2 px-4 cursor-pointer" onClick={() => {
+            navigate("/becomeSeller")
+            closeMenuHandler()
+          }}>
+            Become a seller
           </li>
         </ul>
       </div>

@@ -1,10 +1,12 @@
 import {Action, Dispatch, MiddlewareAPI} from "@reduxjs/toolkit";
 import {Product} from "../components1/redux/interfaces";
-import {waitForSeconds} from "../components1/common/util/functions";
 import {createAppSlice} from "./createAppSlice";
+import ApiService from "../components1/network/ApiService";
+import {waitForSeconds} from "../components1/common/util/functions";
 
 const initialState: {
     items: Product[];
+    current?: Product;
     loading: boolean,
     error: string | undefined
 } = {
@@ -17,17 +19,28 @@ const tasksSlice = createAppSlice({
     name: "products",
     initialState: initialState,
     reducers: (create) => ({
-        addProducts: create.reducer<Product[]>((state, action) => {
-            state.items = [...state.items, ...action.payload];
+        addCurrentProduct: create.reducer<Product>((state, action) => {
+            state.current = action.payload
         }),
         removeProduct: create.reducer<Product>((state, action) => {
             state.items = state.items.filter(it => it.id !== action.payload.id);
         }),
-        fetchTodo: create.asyncThunk(
-            async (id: string, thunkApi) => {
-                await waitForSeconds(3)
-                console.log('GAJENDRA'," action.payload")
-                return 4
+        addProducts: create.asyncThunk(
+            async (product: Product, thunkApi) => {
+                const globalState = thunkApi.getState(); // Access entire state
+                const apiService = new ApiService();
+                const response = await apiService.post(`/api/products`, {
+                    title: product.title,
+                    description: product.description,
+                    minimumQuantity: product.minimumQuantity,
+                    maximumQuantity: product.maximumQuantity,
+                    mrp: product.mrp,
+                    price: product.price,
+                    units: product.units,
+                    sellerId: '12'
+                });
+                await waitForSeconds(2);
+                return response?.data
             },
             {
                 pending: (state) => {
@@ -38,8 +51,27 @@ const tasksSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    console.log('GAJENDRA', action.payload)
-                    // state.items.push(action.payload)
+                    state.items.push(action.payload)
+                },
+            }
+        ),
+        fetchProducts: create.asyncThunk(
+            async (thunkApi) => {
+                const apiService = new ApiService();
+                const response = await apiService.get(`/api/products`);
+                await waitForSeconds(2);
+                return response?.data
+            },
+            {
+                pending: (state) => {
+                    state.loading = true
+                },
+                rejected: (state, action) => {
+                    state.loading = false
+                },
+                fulfilled: (state, action) => {
+                    state.loading = false
+                    state.items = action.payload
                 },
             }
         ),
@@ -60,10 +92,10 @@ export default tasksSlice.reducer;
 export const tasksMiddleware =
     (store: MiddlewareAPI) => (next: Dispatch) => async (action: Action) => {
         const nextAction = next(action);
-        await waitForSeconds(1000)
-        if (action.type.startsWith("products/")) {
-            console.log('GAJENDRA', action)
-        }
+        // await waitForSeconds(1000)
+        // if (action.type.startsWith("products/")) {
+        //     console.log('GAJENDRA', action)
+        // }
         /*   const actionChangeOnlyDirectories =
              tasksActions.createDirectory.match(action);
 

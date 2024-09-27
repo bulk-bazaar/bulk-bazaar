@@ -1,10 +1,12 @@
 import React, {FormEvent, useState} from 'react';
-import ApiService from "../../../network/ApiService";
+import ApiService from "../../../../components1/network/ApiService";
 import {useNavigate} from "react-router-dom";
+import Loader from "../../../../components1/common/ui/Loader";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
+    const [isLoading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -24,6 +26,7 @@ const SignUpPage = () => {
             setError(`Password doesn't match!`)
             return
         }
+        setLoading(true);
         const apiService = new ApiService();
         const response1 = await apiService.post(`/api/users/signup`, {
             email: formData.email,
@@ -43,9 +46,10 @@ const SignUpPage = () => {
         } else {
             setError("Error occurred!");
         }
+        setLoading(false);
     };
 
-    return (
+    return isLoading ? <Loader/>: (
         <div className="min-h-screen flex items-center justify-center">
             <div className="p-8 rounded w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center">Create Your Account</h2>

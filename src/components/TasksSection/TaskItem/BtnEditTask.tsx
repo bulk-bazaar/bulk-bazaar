@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../store/hooks";
-import { tasksActions } from "../../../store/Tasks.store";
+import { tasksActions } from "../../../store/Product.store";
 import ModalCreateProduct from "../../Utilities/ModalTask";
 import { ReactComponent as OptionsSvg } from "../../../assets/options.svg";
 import { Task } from "../../../interfaces";
