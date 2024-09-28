@@ -26,7 +26,7 @@ const Login = () => {
                 case 'USER_LOGGED_IN':
                     dispatch(userActions.setToken(response1.headers["authorization"]))
                     dispatch(userActions.setUser(response1.data.user))
-                    navigate("/bulk-bazaar")
+                    navigate("/bulk-bazaar", { replace: true })
                     break
                 case 'USER_PENDING_OTP_VERIFICATION':
                     break

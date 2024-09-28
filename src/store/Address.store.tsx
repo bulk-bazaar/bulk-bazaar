@@ -1,34 +1,24 @@
+import {Address, CartItem, OrderItem} from "../components1/redux/interfaces";
 import {createAppSlice} from "./createAppSlice";
-import {User} from "../components1/redux/interfaces";
 import ApiService from "../components1/network/ApiService";
 import {waitForSeconds} from "../components1/common/util/functions";
 
 const initialState: {
-    token: string,
-    loading: boolean,
-    user: User | {}
+    addresess: Address[];
+    loading: boolean;
 } = {
-    loading: false,
-    token: '',
-    user: {}
+    addresess: [],
+    loading: false
 };
 
-const userSlice = createAppSlice({
-    name: "user",
+const addressSlice = createAppSlice({
+    name: "address",
     initialState: initialState,
     reducers: (create) => ({
-        setToken: create.reducer<string>((state, action) => {
-            state.token = action.payload;
-        }),
-        setUser: create.reducer<User>((state, action) => {
-            state.user = action.payload;
-        }),
-        requestSeller: create.asyncThunk(
-            async (pancard: string, thunkApi) => {
+        fetchAddress: create.asyncThunk(
+            async (f: string, thunkApi) => {
                 const apiService = new ApiService();
-                const response = await apiService.post(`/api/request/seller`, {
-                    pancard: pancard,
-                });
+                const response = await apiService.get(`/api/address`);
                 await waitForSeconds(1);
                 return response?.data
             },
@@ -41,16 +31,18 @@ const userSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.user = {...state.user, isSeller: 'pending'}
+                    state.addresess = action.payload
                 },
             }
         ),
-        changePassword: create.asyncThunk(
-            async ({newPassword, currentPassword}: { newPassword: string, currentPassword: string }, thunkApi) => {
+        updateAddress: create.asyncThunk(
+            async ({id, houseNumber, street_address, pincode}: {id: number, houseNumber: string, street_address: string, pincode: string}, thunkApi) => {
                 const apiService = new ApiService();
-                const response = await apiService.post(`/api/usersAuth/changePassword`, {
-                    currentPassword: currentPassword,
-                    newPassword: newPassword,
+                const response = await apiService.post(`/api/address/update`, {
+                    id,
+                    houseNumber,
+                    street_address,
+                    pincode
                 });
                 await waitForSeconds(1);
                 return response?.data
@@ -64,20 +56,17 @@ const userSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
+                    state.addresess = action.payload
                 },
             }
         ),
-        updateInfo: create.asyncThunk(
-            async ({firstName, lastName, mobile}: {
-                firstName: string,
-                lastName: string,
-                mobile: string
-            }, thunkApi) => {
+        createAddress: create.asyncThunk(
+            async ({houseNumber, street_address, pincode}: {houseNumber: string, street_address: string, pincode: string}, thunkApi) => {
                 const apiService = new ApiService();
-                const response = await apiService.post(`/api/usersAuth/updateInfo`, {
-                    firstName: firstName,
-                    lastName: lastName,
-                    mobile: mobile,
+                const response = await apiService.post(`/api/address`, {
+                    houseNumber,
+                    street_address,
+                    pincode
                 });
                 await waitForSeconds(1);
                 return response?.data
@@ -91,11 +80,12 @@ const userSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
+                    state.addresess = action.payload
                 },
             }
         ),
     })
 });
 
-export const userActions = userSlice.actions;
-export default userSlice.reducer;
+export const addressActions = addressSlice.actions;
+export default addressSlice.reducer;

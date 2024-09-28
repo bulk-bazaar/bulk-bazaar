@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Modal from "./Modal";
 import {Product} from "../../components1/redux/interfaces";
+import {useAppSelector} from "../../store/hooks";
 
 const ModalCreateProduct: React.FC<{
     onClose: () => void;
@@ -8,12 +9,11 @@ const ModalCreateProduct: React.FC<{
     nameForm: string;
     onConfirm: (product: Product) => void;
 }> = ({onClose, product, nameForm, onConfirm}) => {
-
+    const user = useAppSelector((state) => state.user.user);
     const [title, setTitle] = useState<string>(product?.title || '');
     const [description, setDescription] = useState<string>(product?.description || '');
     const [minimumQuantity, setMinimumQuantity] = useState<number | undefined>(product?.minimumQuantity);
     const [maximumQuantity, setMaximumQuantity] = useState<number | undefined>(product?.maximumQuantity);
-    const [soldQuantity, setSoldQuantity] = useState<number | undefined>(product?.soldQuantity);
     const [mrp, setMrp] = useState<string>(product?.mrp || '');
     const [price, setPrice] = useState<string>(product?.price || '');
     const [units, setUnits] = useState<string>(product?.units || 'Kg');
@@ -26,11 +26,11 @@ const ModalCreateProduct: React.FC<{
             description: description,
             minimumQuantity: minimumQuantity || 0,
             maximumQuantity: maximumQuantity || 0,
-            soldQuantity: soldQuantity || 0,
+            soldQuantity: 0,
             mrp: mrp,
             price: price,
             units: units,
-            sellerId: '2',
+            sellerId: user.id,
             approved: false,
         };
         onConfirm(newProduct);
@@ -67,6 +67,9 @@ const ModalCreateProduct: React.FC<{
                         Minimum Quantity
                         <input
                             type="number"
+                            maxLength={4}
+                            min={1}
+                            max={maximumQuantity || 1}
                             placeholder="e.g, 1, 2, 3.."
                             required
                             value={minimumQuantity}
@@ -78,6 +81,8 @@ const ModalCreateProduct: React.FC<{
                         Maximum Quantity
                         <input
                             type="number"
+                            maxLength={4}
+                            min={1}
                             placeholder="e.g, 1, 2, 3.."
                             required
                             value={maximumQuantity}
@@ -86,24 +91,27 @@ const ModalCreateProduct: React.FC<{
                         />
                     </label>
                     <label>
-                        Sold Quantity
+                        MRP
                         <input
                             type="number"
-                            placeholder="e.g, 1, 2, 3.."
+                            placeholder="ex: 2300"
+                            min={1}
                             required
-                            value={soldQuantity}
-                            onChange={({target}) => setSoldQuantity(parseInt(target.value || '0'))}
+                            value={mrp}
+                            onChange={({target}) => setMrp(target.value)}
                             className="w-full"
                         />
                     </label>
                     <label>
-                        MRP
+                        Price
                         <input
-                            type="text"
+                            type="number"
                             placeholder="ex: 2300"
+                            min={1}
+                            max={mrp || 1}
                             required
-                            value={mrp}
-                            onChange={({target}) => setMrp(target.value)}
+                            value={price}
+                            onChange={({target}) => setPrice(target.value)}
                             className="w-full"
                         />
                     </label>
@@ -114,7 +122,7 @@ const ModalCreateProduct: React.FC<{
                             value={units}
                             onChange={({target}) => setUnits(target.value)}
                         >
-                            {['Kg', 'Liter', 'Dozne'].map((dir: string) => (
+                            {['Kg', 'Pices', 'Liter', 'Dozne'].map((dir: string) => (
                                 <option
                                     key={dir}
                                     value={dir}
@@ -124,17 +132,6 @@ const ModalCreateProduct: React.FC<{
                                 </option>
                             ))}
                         </select>
-                    </label>
-                    <label>
-                        Price
-                        <input
-                            type="text"
-                            placeholder="ex: 2300"
-                            required
-                            value={price}
-                            onChange={({target}) => setPrice(target.value)}
-                            className="w-full"
-                        />
                     </label>
                     <button type="submit" className="btn mt-5">
                         {nameForm}

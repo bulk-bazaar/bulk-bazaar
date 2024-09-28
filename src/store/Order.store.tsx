@@ -1,10 +1,11 @@
-import {CartItem, Order} from "../components1/redux/interfaces";
+import {CartItem, OrderItem} from "../components1/redux/interfaces";
 import {createAppSlice} from "./createAppSlice";
 import ApiService from "../components1/network/ApiService";
+import {waitForSeconds} from "../components1/common/util/functions";
 
 const initialState: {
     cartItems: CartItem[];
-    orders: Order[];
+    orders: OrderItem[];
     loading: boolean;
 } = {
     cartItems: [],
@@ -53,6 +54,7 @@ const ordersSlice = createAppSlice({
             async (f: string, thunkApi) => {
                 const apiService = new ApiService();
                 const response = await apiService.get(`/api/orders`);
+                await waitForSeconds(1);
                 return response?.data
             },
             {

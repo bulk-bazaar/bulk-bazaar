@@ -2,6 +2,7 @@ import React from 'react';
 import {CartItem} from "../../../components1/redux/interfaces";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {ordersActions} from "../../../store/Order.store";
+import {commonActions} from "../../../store/Common.store";
 
 const CheckoutPage = () => {
   const cartItems: CartItem[] = useAppSelector((state) => state.orders.cartItems);
@@ -29,7 +30,7 @@ const CheckoutPage = () => {
                       <p className="text-gray-900 font-semibold">${cartItem.product.price}</p>
                     </div>
                     <p className="text-lg font-bold">
-                      ${parseInt(cartItem.product.price) * cartItem.quantity}
+                      ₹{parseInt(cartItem.product.price) * cartItem.quantity}
                     </p>
                   </div>
               ))}
@@ -58,7 +59,11 @@ const CheckoutPage = () => {
                       dispatch(ordersActions.clearCart())
                     })
                     .catch((error: any) => {
-                      console.log('GAJENDRA E', error)
+                      dispatch(commonActions.showNotification({
+                        type:'Error',
+                        visibility: true,
+                        message: error.message
+                      }))
                     });
               }}>
                 Proceed to Checkout

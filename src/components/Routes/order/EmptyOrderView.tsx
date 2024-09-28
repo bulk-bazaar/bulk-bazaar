@@ -25,10 +25,10 @@ const EmptyOrderView: React.FC = () => {
 
             {/* Empty Orders Message */}
             <h2 className="text-2xl font-bold mb-2">
-                No Orders Yet!
+                Empty cart!
             </h2>
             <p className="mb-6 text-center">
-                You haven't placed any orders yet. Start shopping to fill your cart!
+                You haven't added any products yet. Start shopping to fill your cart!
             </p>
 
             {/* Call to Action Button */}

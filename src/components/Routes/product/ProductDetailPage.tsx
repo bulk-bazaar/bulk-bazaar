@@ -51,7 +51,7 @@ const ProductDetailPage: React.FC = () => {
     // Handle Add to Cart
     const handleAddToCart = () => {
         setCartAdded(true);
-        dispatch(ordersActions.addToCart({ quantity: quantity, product: product}))
+        dispatch(ordersActions.addToCart({quantity: quantity, product: product}))
     };
 
     return (
@@ -61,7 +61,7 @@ const ProductDetailPage: React.FC = () => {
                 {/* Product Image */}
                 <div className="w-full md:w-1/2 mb-6 md:mb-0">
                     <img
-                        src="https://via.placeholder.com/600"
+                        src="https://m.media-amazon.com/images/I/51DJ-9xkuQL._AC_UF1000,1000_QL80_.jpg"
                         alt={product.title}
                         className="w-full h-auto object-cover"
                     />
@@ -96,7 +96,7 @@ const ProductDetailPage: React.FC = () => {
                             -
                         </button>
                         <span className="px-6 py-2 text-lg font-semibold text-gray-700 dark:text-gray-200">
-              {quantity}
+              {quantity}{product.units}
             </span>
                         <button
                             onClick={increaseQuantity}
@@ -117,7 +117,7 @@ const ProductDetailPage: React.FC = () => {
                         {cartAdded ? (
                             <p className="text-green-600 font-semibold">Added to cart!</p>
                         ) : product.soldQuantity >= product.maximumQuantity ?
-                            <p className="text-green-600 font-semibold">Out of stock!</p>  : (
+                            <p className="text-green-600 font-semibold">Out of stock!</p> : (
                                 <button
                                     onClick={handleAddToCart}
                                     className="bg-blue-600 text-white py-3 px-6 font-semibold hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
@@ -137,7 +137,7 @@ const ProductDetailPage: React.FC = () => {
                 <div className="bg-gray-200 rounded-full h-6 mb-4 dark:bg-gray-600">
                     <div
                         className="bg-green-500 h-6 rounded-full"
-                        style={{ width: `${progressPercentage}%` }}
+                        style={{width: `${progressPercentage}%`}}
                     ></div>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400">

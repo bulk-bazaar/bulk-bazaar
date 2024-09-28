@@ -6,11 +6,13 @@ import {waitForSeconds} from "../components1/common/util/functions";
 
 const initialState: {
     items: Product[];
+    myitems: Product[];
     current?: Product;
     loading: boolean,
     error: string | undefined
 } = {
     items: [],
+    myitems: [],
     loading: false,
     error: undefined
 };
@@ -37,9 +39,9 @@ const tasksSlice = createAppSlice({
                     mrp: product.mrp,
                     price: product.price,
                     units: product.units,
-                    sellerId: '12'
+                    sellerId: product.sellerId
                 });
-                await waitForSeconds(2);
+                await waitForSeconds(1);
                 return response?.data
             },
             {
@@ -51,7 +53,7 @@ const tasksSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.items.push(action.payload)
+                    // state.items.push(action.payload)
                 },
             }
         ),
@@ -59,7 +61,7 @@ const tasksSlice = createAppSlice({
             async (thunkApi) => {
                 const apiService = new ApiService();
                 const response = await apiService.get(`/api/products`);
-                await waitForSeconds(2);
+                await waitForSeconds(1);
                 return response?.data
             },
             {
@@ -72,6 +74,26 @@ const tasksSlice = createAppSlice({
                 fulfilled: (state, action) => {
                     state.loading = false
                     state.items = action.payload
+                },
+            }
+        ),
+        fetchMyProducts: create.asyncThunk(
+            async (thunkApi) => {
+                const apiService = new ApiService();
+                const response = await apiService.get(`/api/products/my`);
+                await waitForSeconds(1);
+                return response?.data
+            },
+            {
+                pending: (state) => {
+                    state.loading = true
+                },
+                rejected: (state, action) => {
+                    state.loading = false
+                },
+                fulfilled: (state, action) => {
+                    state.loading = false
+                    state.myitems = action.payload
                 },
             }
         ),
@@ -92,7 +114,6 @@ export default tasksSlice.reducer;
 export const tasksMiddleware =
     (store: MiddlewareAPI) => (next: Dispatch) => async (action: Action) => {
         const nextAction = next(action);
-        // await waitForSeconds(1000)
         // if (action.type.startsWith("products/")) {
         //     console.log('GAJENDRA', action)
         // }

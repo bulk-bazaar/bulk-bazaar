@@ -1,15 +1,14 @@
 import React from "react";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
-import {ReactComponent as MenuIcon} from "../../../assets/view-1.svg";
+import {ReactComponent as MenuIcon} from "../../../assets/Social.svg";
 import {ReactComponent as EditIcon} from "../../../assets/edit.svg";
 import {menusActions} from "../../../store/Menu.store";
-import useMode from "../hooks/useMode";
-import {Switch} from "@mui/material";
 import {modalActions} from "../../../store/Modal.store";
 import CartIcon from "./CartIcon";
 
 const Toolbar: React.FC = () => {
     const dispatch = useAppDispatch();
+    const addreses: any = useAppSelector((state) => state.address.addresess);
     const isSeller = useAppSelector((state) => state.user.user.isSeller);
     const openNewTaskHandler = () => {
         dispatch(modalActions.openModalCreateTask());
@@ -18,18 +17,19 @@ const Toolbar: React.FC = () => {
     const openMenuHeaderHandler = () => {
         dispatch(menusActions.openMenuHeader());
     };
-    const {isCurrentDarkmode, setIsCurrentDarkmode} = useMode()
-
     return (
         <header className="flex flex-row justify-between h-12 items-center">
             <div className={"flex flex-row items-center text-xl"}>
                 <HeaderItem onClick={openMenuHeaderHandler} icon={MenuIcon}/>
-                <h1>Bulk Market</h1>
+                {
+                    addreses.length > 0 ? <h1 className={'underline font-bold'}>
+                        {addreses[0].street_address} ({addreses[0].pincode})
+                    </h1>: undefined
+                }
             </div>
             <div className={"flex flex-row items-center"}>
                 <CartIcon />
                 {isSeller === 'approved' ? <HeaderItem onClick={openNewTaskHandler} icon={EditIcon}/>: undefined}
-                <Switch value={isCurrentDarkmode} onChange={e => setIsCurrentDarkmode(!isCurrentDarkmode)}/>
             </div>
         </header>
     );

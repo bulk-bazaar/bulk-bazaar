@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Menu from "./components/Menu/Menu";
 import ProductsSection from "./components/TasksSection/ProductsSection";
 import ModalCreateProduct from "./components/Utilities/ModalTask";
@@ -7,9 +7,11 @@ import {modalActions} from "./store/Modal.store";
 import {tasksActions} from "./store/Product.store";
 import Toolbar from "./components1/common/ui/Toolbar";
 import {Product} from "./components1/redux/interfaces";
+import MessageAlert from "./components1/common/ui/MessageAlert";
 
 const App: React.FC = () => {
     const modal = useAppSelector((state) => state.modal);
+    const common = useAppSelector((state) => state.common);
 
     const dispatch = useAppDispatch();
 
@@ -37,6 +39,10 @@ const App: React.FC = () => {
                 <Toolbar/>
                 <ProductsSection/>
             </div>
+            {common.messageAlert ?
+                <MessageAlert visibility={common.messageAlert?.visibility} type={common.messageAlert.type}
+                              message={common.messageAlert.message}/> : undefined}
+
         </div>
     );
 };

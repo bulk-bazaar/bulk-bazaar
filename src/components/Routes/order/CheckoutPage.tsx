@@ -5,6 +5,7 @@ import {ordersActions} from "../../../store/Order.store";
 import Loader from "../../../components1/common/ui/Loader";
 import CheckoutDetail from "./CheckoutDetail";
 import OrderSuccess from "./OrderSuccess";
+import {commonActions} from "../../../store/Common.store";
 
 const CheckoutPage = () => {
     const loading: CartItem[] = useAppSelector((state) => state.orders.loading);
@@ -18,7 +19,12 @@ const CheckoutPage = () => {
                 dispatch(ordersActions.clearCart())
             })
             .catch((error: any) => {
-                console.log('GAJENDRA E', error)
+
+                dispatch(commonActions.showNotification({
+                    type:'Error',
+                    visibility: true,
+                    message: error.message
+                }))
             });
     }
     return loading ? <Loader/> :

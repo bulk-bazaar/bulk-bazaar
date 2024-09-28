@@ -12,6 +12,8 @@ import ProductDetailPage from "../Routes/product/ProductDetailPage";
 import CheckoutPage from "../Routes/order/CheckoutPage";
 import OrderPage from "../Routes/OrderPage";
 import SellerRequestPage from "../Routes/seller/SellerRequestPage";
+import MyProductsPage from "../Routes/product/MyProductsPage";
+import SettingsPage from "../Routes/settings/SettingsPage";
 
 
 const ProductsSection: React.FC = () => {
@@ -24,24 +26,15 @@ const ProductsSection: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/product" element={<ProductDetailPage/>}/>
+                    <Route path="/myproducts" element={<MyProductsPage/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/orders" element={<OrderPage/>}/>
+                    <Route path="/settings" element={<SettingsPage/>}/>
                     <Route path="/verifyOTP/:email" element={<VerifyOTPPage/>}/>
                     <Route path="/signup" element={<SignUpPage/>}/>
                     <Route path="/becomeSeller" element={<SellerRequestPage/>}/>
                     <Route path="/forgotpassword" element={<ForgotPasswordPage/>}/>
                     <Route path="/checkout" element={<CheckoutPage/>}/>
-                    <Route
-                        path="/completed"
-                        element={<DoneTasks done={true} title="Completed tasks"/>}
-                    />
-                    <Route
-                        path="/uncompleted"
-                        element={<DoneTasks done={false} title="Uncompleted tasks"/>}
-                    />
-                    <Route path="/results" element={<SearchResults/>}/>
-                    {/*<Route path="/dir/:dir" element={<Directory/>}/>*/}
-                    <Route path="/task/:taskId" element={<TaskOnly/>}/>
                     <Route path="*" element={<Navigate to=""/>}/>
                 </Routes>
             </div>
