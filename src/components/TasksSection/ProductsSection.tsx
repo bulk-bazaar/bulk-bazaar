@@ -1,9 +1,5 @@
 import React from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
-import DoneTasks from "../Routes/DoneTasks";
-import Home from "../Routes/Home";
-import SearchResults from "../Routes/SearchResults";
-import TaskOnly from "../Routes/TaskOnly";
 import Login from "../Routes/login/Login";
 import SignUpPage from "../Routes/login/signup/SignUpPage";
 import ForgotPasswordPage from "../Routes/login/fogotpassword/ForgotPasswordPage";
@@ -14,6 +10,7 @@ import OrderPage from "../Routes/OrderPage";
 import SellerRequestPage from "../Routes/seller/SellerRequestPage";
 import MyProductsPage from "../Routes/product/MyProductsPage";
 import SettingsPage from "../Routes/settings/SettingsPage";
+import HomePage from "../../ui/pages/HomePage";
 
 
 const ProductsSection: React.FC = () => {
@@ -24,7 +21,7 @@ const ProductsSection: React.FC = () => {
         <div className={'relative w-full'}>
             <div className={"ra pt-4"}>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
+                    <Route path="/" element={<HomePage/>}/>
                     <Route path="/product" element={<ProductDetailPage/>}/>
                     <Route path="/myproducts" element={<MyProductsPage/>}/>
                     <Route path="/login" element={<Login/>}/>

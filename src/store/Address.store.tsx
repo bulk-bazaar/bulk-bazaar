@@ -31,7 +31,7 @@ const addressSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.addresess = action.payload
+                    state.addresess = action.payload.data
                 },
             }
         ),
@@ -56,7 +56,7 @@ const addressSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.addresess = action.payload
+                    state.addresess = action.payload.data
                 },
             }
         ),
@@ -80,7 +80,7 @@ const addressSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.addresess = action.payload
+                    state.addresess = action.payload.data
                 },
             }
         ),

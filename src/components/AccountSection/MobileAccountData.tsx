@@ -6,14 +6,9 @@ import {GameHooks} from "./HookState";
 import {ReactComponent as GameBar} from "../../assets/gameboy.svg";
 import {ReactComponent as TicTac} from "../../assets/tic-tac-toe.svg";
 import {ReactComponent as Game2048} from "../../assets/2048.svg";
-import Weather from "../../Weather/WeatherApp";
 import {ElseIf, If} from "../Service/condition";
 import GameTicTac from "../../game/TicTacToe/Game/Game";
 import GamePuzzle from "../../game/Puzzle/App";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {DateCalendar} from "@mui/x-date-pickers/DateCalendar";
-import dayjs from "dayjs";
-import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 
 export default function MobileAccountData({BackState, BackSet}: { BackState: boolean, BackSet: any }) {
 

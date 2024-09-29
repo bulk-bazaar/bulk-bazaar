@@ -66,7 +66,7 @@ const ordersSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.orders = action.payload
+                    state.orders = action.payload.data
                 },
             }
         ),

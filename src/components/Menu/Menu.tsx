@@ -50,7 +50,7 @@ const Menu: React.FC = () => {
             closeMenuHandler()
             // dispatch(commonActions.showNotification({
             //   type:'Notification',
-            //   visibility: true,
+            // date: new Date(),
             //   message: 'Notification1'
             // }))
             navigate("/settings")

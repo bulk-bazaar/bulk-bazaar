@@ -11,6 +11,7 @@ export interface Product {
     sellerId: number
     approved: boolean
 }
+
 export interface User {
     id?: string,
     email: string,
@@ -46,4 +47,11 @@ export interface Address {
     pincode: number,
     createdAt: Date,
     updatedAt: Date,
+}
+
+
+export interface AlertData {
+    message: string;
+    type: 'Error' | 'Notification';
+    date: Date,
 }

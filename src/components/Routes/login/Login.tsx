@@ -4,6 +4,7 @@ import ApiService from "../../../components1/network/ApiService";
 import {userActions} from "../../../store/User.store";
 import {useAppDispatch} from "../../../store/hooks";
 import Loader from "../../../components1/common/ui/Loader";
+import LoginInterface from "./LoginInterface";
 
 const Login = () => {
     const dispatch = useAppDispatch();
@@ -21,32 +22,28 @@ const Login = () => {
             email: email,
             password: password,
         });
-        if (response1?.status === 200) {
-            switch (response1.data.type){
-                case 'USER_LOGGED_IN':
-                    dispatch(userActions.setToken(response1.headers["authorization"]))
-                    dispatch(userActions.setUser(response1.data.user))
-                    navigate("/bulk-bazaar", { replace: true })
-                    break
-                case 'USER_PENDING_OTP_VERIFICATION':
-                    break
-                case 'USER_PASSWORD_INCORRECT':
-                    setError(response1.data.message)
-                    break
-                case 'USER_DOES_NOT_EXISTS':
-                    setError(response1.data.message)
-                    break
-                default :
-                    setError(response1?.data?.message)
-                    break
-            }
-        } else {
-            setError(response1?.data?.message);
+        switch (response1?.data.code) {
+            case LoginInterface.login.LOGGED_IN:
+                dispatch(userActions.setToken(response1.headers["authorization"]))
+                dispatch(userActions.setUser(response1.data.data))
+                navigate("/bulk-bazaar", {replace: true})
+                break
+            case LoginInterface.login.PENDING_OTP_VERIFICATION:
+                break
+            case LoginInterface.login.PASSWORD_INCORRECT:
+                setError(response1.data.message)
+                break
+            case LoginInterface.login.NOT_REGISTERED:
+                setError(response1.data.message)
+                break
+            default :
+                setError(response1?.data?.message)
+                break
         }
         setLoading(false);
     };
 
-    return isLoading ? <Loader/>: (
+    return isLoading ? <Loader/> : (
         <div className="min-h-screen flex items-center justify-center">
             <div className="p-8 rounded w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center">Login to Your Account</h2>

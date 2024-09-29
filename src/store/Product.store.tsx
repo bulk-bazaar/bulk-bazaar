@@ -73,7 +73,7 @@ const tasksSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.items = action.payload
+                    state.items = action.payload.data
                 },
             }
         ),
@@ -93,7 +93,7 @@ const tasksSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.myitems = action.payload
+                    state.myitems = action.payload.data
                 },
             }
         ),

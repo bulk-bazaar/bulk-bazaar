@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ApiService from "../../../../components1/network/ApiService";
 import {useNavigate, useParams} from "react-router-dom";
 import Loader from "../../../../components1/common/ui/Loader";
+import LoginInterface from "./../LoginInterface";
 
 const VerifyOTPPage = () => {
     const params = useParams();
@@ -18,22 +19,18 @@ const VerifyOTPPage = () => {
             email: params.email,
             otp: otp
         });
-        if (response1?.status === 200) {
-            switch (response1.data.type){
-                case 'USER_VALID_OTP':
-                    navigate("/login")
-                    break
-                case 'USER_IN_VALID_OTP':
-                    setError(response1.data.message)
-                    break
-            }
-        } else {
-            setError("Error occurred!");
+        switch (response1?.data.type) {
+            case LoginInterface.verifyOTP.VERIFIED_OTP:
+                navigate("/login")
+                break
+            default:
+                setError(response1?.data.message);
+                break
         }
         setLoading(false);
     };
 
-    return isLoading ? <Loader/>:  (
+    return isLoading ? <Loader/> : (
         <div className="min-h-screen flex items-center justify-center">
             <div className="p-8 rounded w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center">Verify</h2>

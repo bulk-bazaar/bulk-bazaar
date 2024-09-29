@@ -1,17 +1,16 @@
 import {createAppSlice} from "./createAppSlice";
-import {MessageAlertProps} from "../components1/common/ui/MessageAlert";
+import {AlertData} from "../components1/redux/interfaces";
 
 const initialState: {
-    messageAlert?: MessageAlertProps;
-} = {
-};
+    alertData?: AlertData;
+} = {};
 
 const commonSlice = createAppSlice({
     name: "common",
     initialState: initialState,
     reducers: (create) => ({
-        showNotification: create.reducer<MessageAlertProps>((state, action) => {
-            state.messageAlert = action.payload
+        showNotification: create.reducer<AlertData>((state, action) => {
+            state.alertData = action.payload
         }),
     })
 });

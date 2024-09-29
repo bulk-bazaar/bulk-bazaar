@@ -22,7 +22,7 @@ const CheckoutPage = () => {
 
                 dispatch(commonActions.showNotification({
                     type:'Error',
-                    visibility: true,
+                    date: new Date(),
                     message: error.message
                 }))
             });

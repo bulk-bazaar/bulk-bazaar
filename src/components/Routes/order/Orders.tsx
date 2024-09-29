@@ -61,7 +61,7 @@ const CheckoutPage = () => {
                     .catch((error: any) => {
                       dispatch(commonActions.showNotification({
                         type:'Error',
-                        visibility: true,
+                        date: new Date(),
                         message: error.message
                       }))
                     });

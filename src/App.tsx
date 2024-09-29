@@ -39,9 +39,8 @@ const App: React.FC = () => {
                 <Toolbar/>
                 <ProductsSection/>
             </div>
-            {common.messageAlert ?
-                <MessageAlert visibility={common.messageAlert?.visibility} type={common.messageAlert.type}
-                              message={common.messageAlert.message}/> : undefined}
+            {common.alertData ?
+                <MessageAlert alertData={common.alertData}/> : undefined}
 
         </div>
     );

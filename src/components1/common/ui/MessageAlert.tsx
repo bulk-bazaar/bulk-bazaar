@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Drawer, IconButton, Typography } from "@mui/material";
-
-// Define the types for the props
-export type MessageType = 'Error' | 'Notification';
+import React, {useEffect, useState} from "react";
+import {Drawer, IconButton, Typography} from "@mui/material";
+import {AlertData} from "../../redux/interfaces";
 
 export interface MessageAlertProps {
-    visibility: boolean;
-    message: string;
-    type: MessageType;
+    alertData: AlertData;
 }
 
-const MessageAlert: React.FC<MessageAlertProps> = ({ visibility, message, type }) => {
+const MessageAlert: React.FC<MessageAlertProps> = ({alertData}) => {
     const [showDrawer, setShowDrawer] = useState<boolean>(false);
 
     const hideAfterSec = () => {
@@ -20,14 +16,12 @@ const MessageAlert: React.FC<MessageAlertProps> = ({ visibility, message, type }
     };
 
     useEffect(() => {
-        if (visibility) {
-            setShowDrawer(true);
-            hideAfterSec();
-        }
-    }, [visibility, message, type]);
+        setShowDrawer(true);
+        hideAfterSec();
+    }, [alertData]);
 
     // Determine the background color based on the message type
-    const backgroundColor = type === 'Error' ? 'bg-red-500' : 'bg-green-500';
+    const backgroundColor = alertData.type === 'Error' ? 'bg-red-500' : 'bg-green-500';
 
     return (
         <Drawer
@@ -40,7 +34,7 @@ const MessageAlert: React.FC<MessageAlertProps> = ({ visibility, message, type }
         >
             <div className={`flex flex-row justify-between items-center p-2 ${backgroundColor}`}>
                 <Typography color="white" className="mb-8 pr-4 font-normal">
-                    {message}
+                    {alertData.message}
                 </Typography>
 
                 <IconButton onClick={() => {

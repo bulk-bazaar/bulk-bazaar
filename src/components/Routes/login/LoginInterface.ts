@@ -1,0 +1,33 @@
+export default {
+    login: {
+        LOGGED_IN: 'LOGGED_IN',
+        PENDING_OTP_VERIFICATION: 'PENDING_OTP_VERIFICATION',
+        PASSWORD_INCORRECT: 'PASSWORD_INCORRECT',
+        NOT_REGISTERED: 'NOT_REGISTERED',
+        INTERNAL_ERROR: 'INTERNAL_ERROR',
+    },
+    signup: {
+        SIGNED_UP: 'SIGNED_UP',
+        USER_EXISTS: 'USER_EXISTS',
+        INTERNAL_ERROR: 'INTERNAL_ERROR',
+    },
+    verifyOTP: {
+        VERIFIED_OTP: 'VERIFIED_OTP',
+        INVALID_OTP: 'INVALID_OTP',
+        INTERNAL_ERROR: 'INTERNAL_ERROR',
+    },
+    requestSeller: {
+        REQUESTED: 'REQUESTED',
+        INTERNAL_ERROR: 'INTERNAL_ERROR',
+    },
+    changePassword: {
+        PASSWORD_CHANGED: 'PASSWORD_CHANGED',
+        INCORRECT_PASSWORD: 'INCORRECT_PASSWORD',
+        USER_NOT_REGISTERED: 'USER_NOT_REGISTERED',
+        INTERNAL_ERROR: 'INTERNAL_ERROR',
+    },
+    updateInfo: {
+        INFO_UPDATED: 'INFO_UPDATED',
+        INTERNAL_ERROR: 'INTERNAL_ERROR',
+    }
+};

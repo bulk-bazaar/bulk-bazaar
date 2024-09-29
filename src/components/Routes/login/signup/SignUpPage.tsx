@@ -2,6 +2,7 @@ import React, {FormEvent, useState} from 'react';
 import ApiService from "../../../../components1/network/ApiService";
 import {useNavigate} from "react-router-dom";
 import Loader from "../../../../components1/common/ui/Loader";
+import LoginInterface from "./../LoginInterface";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
@@ -15,14 +16,14 @@ const SignUpPage = () => {
         confirmPassword: '',
     });
 
-    const handleChange = (e:any) => {
+    const handleChange = (e: any) => {
         setError('')
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({...formData, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(formData.password !== formData.confirmPassword){
+        if (formData.password !== formData.confirmPassword) {
             setError(`Password doesn't match!`)
             return
         }
@@ -34,22 +35,21 @@ const SignUpPage = () => {
             lastName: formData.lastName,
             password: formData.password,
         });
-        if (response1?.status === 200) {
-            switch (response1.data.type){
-                case 'USER_SIGNED_UP':
-                    navigate(`/verifyOTP/${formData.email}`)
-                    break
-                case 'USER_ALREADY_EXIST':
-                    setError(response1.data.message)
-                    break
-            }
-        } else {
-            setError("Error occurred!");
+        switch (response1?.data.code) {
+            case LoginInterface.signup.SIGNED_UP:
+                navigate(`/verifyOTP/${formData.email}`)
+                break
+            case LoginInterface.signup.USER_EXISTS:
+                setError(response1.data.message)
+                break
+            default:
+                setError(response1?.data.message);
+                break
         }
         setLoading(false);
     };
 
-    return isLoading ? <Loader/>: (
+    return isLoading ? <Loader/> : (
         <div className="min-h-screen flex items-center justify-center">
             <div className="p-8 rounded w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center">Create Your Account</h2>
@@ -152,7 +152,7 @@ const SignUpPage = () => {
                 </p>
             </div>
         </div>
-);
+    );
 };
 
 export default SignUpPage;

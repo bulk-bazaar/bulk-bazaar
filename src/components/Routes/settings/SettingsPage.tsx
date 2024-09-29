@@ -7,11 +7,14 @@ import useMode from "../../../components1/common/hooks/useMode";
 import Address from './Address';
 import {userActions} from "../../../store/User.store";
 import {commonActions} from "../../../store/Common.store";
+import WithLoading from "../../../ui/hoc/WithLoading";
 
 const SettingsPage = () => {
     const {isCurrentDarkmode, setIsCurrentDarkmode} = useMode()
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const userLoading = useAppSelector((state) => state.user.loading);
+    const addresesLoading: any = useAppSelector((state) => state.address.loading);
     const user = useAppSelector((state) => state.user.user);
     const [personalInfo, setPersonalInfo] = useState({
         firstName: '',
@@ -38,9 +41,9 @@ const SettingsPage = () => {
 
     const handleSavePersonalInfo = () => {
         dispatch(userActions.updateInfo({
-            firstName: personalInfo.firstName,
-            lastName: personalInfo.lastName,
-            mobile: personalInfo.mobile,
+            firstName: personalInfo.firstName || user.firstName,
+            lastName: personalInfo.lastName || user.lastName,
+            mobile: personalInfo.mobile || user.mobile,
         }))
     };
 
@@ -49,7 +52,7 @@ const SettingsPage = () => {
         if (password.newPassword !== password.confirmPassword) {
             dispatch(commonActions.showNotification({
                 type: 'Error',
-                visibility: true,
+                date: new Date(),
                 message: "Password doesn't match!"
             }))
         } else {
@@ -59,15 +62,15 @@ const SettingsPage = () => {
             })).unwrap()
                 .then((response: any) => {
                     dispatch(commonActions.showNotification({
-                        type:'Notification',
-                        visibility: true,
-                        message: response.message
+                        type: 'Notification',
+                        date: new Date(),
+                        message: response.data.message
                     }))
                 })
                 .catch((error: any) => {
                     dispatch(commonActions.showNotification({
-                        type:'Error',
-                        visibility: true,
+                        type: 'Error',
+                        date: new Date(),
                         message: error.message
                     }))
                 });
@@ -83,7 +86,7 @@ const SettingsPage = () => {
         setIsCurrentDarkmode(!isCurrentDarkmode);
     };
 
-    return (
+    return <WithLoading loading={userLoading || addresesLoading}>
         <div className="max-w-3xl mx-auto p-6 rounded-lg shadow-lg space-y-6">
             <h2 className="text-3xl font-bold text-center">Settings</h2>
             {/* Theme Toggle Section */}
@@ -189,7 +192,7 @@ const SettingsPage = () => {
                 Logout
             </p>
         </div>
-    );
+    </WithLoading>
 };
 
 export default SettingsPage;
