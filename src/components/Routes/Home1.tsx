@@ -11,7 +11,7 @@ const Home1: React.FC = () => {
     const products = useAppSelector((state) => state.products.items);
     const isLoading = useAppSelector((state) => state.products.loading);
     useEffect(() => {
-        dispatch(tasksActions.fetchProducts());
+        dispatch(tasksActions.fetchProducts(''));
     }, []);
 
     useDescriptionTitle("Organize your tasks", "All tasks");

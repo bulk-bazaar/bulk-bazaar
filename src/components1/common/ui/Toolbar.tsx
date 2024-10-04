@@ -17,15 +17,20 @@ const Toolbar: React.FC = () => {
     const openMenuHeaderHandler = () => {
         dispatch(menusActions.openMenuHeader());
     };
+    const openMenuAddressHandler = () => {
+        dispatch(modalActions.openModalAddress());
+    };
     return (
         <header className="flex flex-row justify-between h-12 items-center">
             <div className={"flex flex-row items-center text-xl"}>
                 <HeaderItem onClick={openMenuHeaderHandler} icon={MenuIcon}/>
+                <section onClick={openMenuAddressHandler}>
                 {
                     addreses.length > 0 ? <h1 className={'underline font-bold'}>
                         {addreses[0].street_address} ({addreses[0].pincode})
                     </h1>: undefined
                 }
+                </section>
             </div>
             <div className={"flex flex-row items-center"}>
                 <CartIcon />

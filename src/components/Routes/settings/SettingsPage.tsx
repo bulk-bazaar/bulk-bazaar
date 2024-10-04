@@ -146,7 +146,7 @@ const SettingsPage = () => {
                     Save Changes
                 </p>
             </div>
-            <Address/>
+            <Address onclose={() => {}}/>
             {/* Change Password Section */}
             <div className="bg-white shadow-lg rounded-lg dark:bg-slate-800 p-4">
                 <h3 className="text-xl font-semibold mb-4">Change Password</h3>

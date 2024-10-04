@@ -13,7 +13,7 @@ const MyProductsPage: React.FC = () => {
     const loading = useAppSelector((state) => state.products.loading);
     const products = useAppSelector((state) => state.products.myitems);
     useEffect(() => {
-        dispatch(tasksActions.fetchMyProducts())
+        dispatch(tasksActions.fetchMyProducts(''))
             .unwrap()
             .then((response: any) => {
                 dispatch(ordersActions.clearCart())

@@ -12,10 +12,12 @@ function HomePage() {
     const dispatch = useAppDispatch();
     const products = useAppSelector((state) => state.products.items);
     const isLoading = useAppSelector((state) => state.products.loading);
+    const addreses: any = useAppSelector((state) => state.address.addresess);
+
     useEffect(() => {
-        dispatch(tasksActions.fetchProducts());
+        dispatch(tasksActions.fetchProducts(''));
         dispatch(addressActions.fetchAddress(''))
-    }, []);
+    }, [addreses[0].pincode]);
 
     useDescriptionTitle("Organize your tasks", "All tasks");
     return <WithLoading loading={isLoading}>

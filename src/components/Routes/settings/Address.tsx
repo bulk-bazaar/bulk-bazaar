@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {addressActions} from "../../../store/Address.store";
 
-const Address = () => {
+const Address = ({onclose}: { onclose: () => void }) => {
     const dispatch = useAppDispatch();
     const addresess: any = useAppSelector((state) => state.address.addresess);
     const [address, setAddress] = useState({
@@ -12,7 +12,7 @@ const Address = () => {
     });
 
     const handleSaveAddress = () => {
-        if( addresess.length > 0){
+        if (addresess.length > 0) {
             dispatch(addressActions.updateAddress(
                 {
                     id: addresess[0].id,
@@ -20,8 +20,8 @@ const Address = () => {
                     street_address: address.streetAddress,
                     pincode: address.pincode,
                 }
-            ))
-        }else{
+            )).unwrap().then(onclose).catch(onclose)
+        } else {
             dispatch(addressActions.createAddress(
                 {
                     houseNumber: address.address,
@@ -30,7 +30,6 @@ const Address = () => {
                 }
             ))
         }
-
     };
 
     useEffect(() => {

@@ -58,9 +58,11 @@ const tasksSlice = createAppSlice({
             }
         ),
         fetchProducts: create.asyncThunk(
-            async (thunkApi) => {
+            async (s: string, thunkApi) => {
+                const globalState: any = thunkApi.getState();
+                const pincode = globalState.address.addresess[0].pincode;
                 const apiService = new ApiService();
-                const response = await apiService.get(`/api/products`);
+                const response = await apiService.get(`/api/products?pincode=${pincode}`);
                 await waitForSeconds(1);
                 return response?.data
             },
@@ -78,9 +80,11 @@ const tasksSlice = createAppSlice({
             }
         ),
         fetchMyProducts: create.asyncThunk(
-            async (thunkApi) => {
+            async (s: string, thunkApi) => {
+                const globalState: any = thunkApi.getState();
+                const pincode = globalState.address.addresess[0].pincode;
                 const apiService = new ApiService();
-                const response = await apiService.get(`/api/products/my`);
+                const response = await apiService.get(`/api/products/my?pincode=${pincode}`);
                 await waitForSeconds(1);
                 return response?.data
             },
