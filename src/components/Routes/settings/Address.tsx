@@ -6,13 +6,13 @@ const Address = ({onclose}: { onclose: () => void }) => {
     const dispatch = useAppDispatch();
     const addresess: any = useAppSelector((state) => state.address.addresess);
     const [address, setAddress] = useState({
-        address: addresess.length > 0 ? addresess[0].houseNumber : '',
-        pincode: addresess.length > 0 ? addresess[0].pincode : '',
-        streetAddress: addresess.length > 0 ? addresess[0].street_address : '',
+        address: addresess && addresess.length > 0 ? addresess[0].houseNumber : '',
+        pincode: addresess && addresess.length > 0 ? addresess[0].pincode : '',
+        streetAddress: addresess && addresess.length > 0 ? addresess[0].street_address : '',
     });
 
     const handleSaveAddress = () => {
-        if (addresess.length > 0) {
+        if (addresess && addresess.length > 0) {
             dispatch(addressActions.updateAddress(
                 {
                     id: addresess[0].id,
@@ -34,11 +34,11 @@ const Address = ({onclose}: { onclose: () => void }) => {
 
     useEffect(() => {
         setAddress({
-            address: addresess.length > 0 ? addresess[0].houseNumber : '',
-            pincode: addresess.length > 0 ? addresess[0].pincode : '',
-            streetAddress: addresess.length > 0 ? addresess[0].street_address : ''
+            address: addresess && addresess.length > 0 ? addresess[0].houseNumber : '',
+            pincode: addresess && addresess.length > 0 ? addresess[0].pincode : '',
+            streetAddress: addresess && addresess.length > 0 ? addresess[0].street_address : ''
         })
-    }, [addresess]);
+    }, [addresess && addresess]);
 
     useEffect(() => {
         dispatch(addressActions.fetchAddress(''))

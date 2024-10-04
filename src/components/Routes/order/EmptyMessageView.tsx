@@ -1,10 +1,18 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
 
-const EmptyOrderView: React.FC = () => {
-    const navigate = useNavigate();
+const EmptyMessageView: React.FC<{
+    title: string,
+    actionName?: string,
+    description?: string,
+    onClick?: () => void
+}> = ({title, actionName, description, onClick}: {
+    title: string,
+    actionName?: string,
+    description?: string,
+    onClick?: () => void
+}) => {
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex flex-col items-center justify-center h-screen bg-white dark:bg-slate-800 my-8">
             {/* Empty State Illustration (optional) */}
             <div className="mb-6">
                 <svg
@@ -25,21 +33,22 @@ const EmptyOrderView: React.FC = () => {
 
             {/* Empty Orders Message */}
             <h2 className="text-2xl font-bold mb-2">
-                Empty cart!
+                {title}
             </h2>
             <p className="mb-6 text-center">
-                You haven't added any products yet. Start shopping to fill your cart!
+                {description}
             </p>
 
-            {/* Call to Action Button */}
-            <button
-                onClick={() =>  navigate('/')}
-                className="px-6 py-3 bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
-            >
-                Shop Now
-            </button>
+            {actionName &&
+                <button
+                    onClick={onClick}
+                    className="px-6 py-3 bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
+                >
+                    {actionName}
+                </button>
+            }
         </div>
     );
 };
 
-export default EmptyOrderView;
+export default EmptyMessageView;

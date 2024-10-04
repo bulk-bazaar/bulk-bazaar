@@ -3,8 +3,11 @@ import ApiService from "../../../../components1/network/ApiService";
 import {useNavigate, useParams} from "react-router-dom";
 import Loader from "../../../../components1/common/ui/Loader";
 import LoginInterface from "./../LoginInterface";
+import {commonActions} from "../../../../store/Common.store";
+import {useAppDispatch} from "../../../../store/hooks";
 
 const VerifyOTPPage = () => {
+    const dispatch = useAppDispatch();
     const params = useParams();
     const navigate = useNavigate();
     const [isLoading, setLoading] = useState(false);
@@ -19,9 +22,14 @@ const VerifyOTPPage = () => {
             email: params.email,
             otp: otp
         });
-        switch (response1?.data.type) {
+        switch (response1?.data.code) {
             case LoginInterface.verifyOTP.VERIFIED_OTP:
                 navigate("/login")
+                dispatch(commonActions.showNotification({
+                    type:'Notification',
+                    date: new Date(),
+                    message: response1?.data.message
+                }))
                 break
             default:
                 setError(response1?.data.message);

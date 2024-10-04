@@ -52,7 +52,7 @@ const App: React.FC = () => {
                 />
             )}
             <Menu/>
-            <div className={"p-4"}>
+            <div>
                 <Toolbar/>
                 <ProductsSection/>
             </div>

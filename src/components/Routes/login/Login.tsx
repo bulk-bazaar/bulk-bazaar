@@ -5,6 +5,7 @@ import {userActions} from "../../../store/User.store";
 import {useAppDispatch} from "../../../store/hooks";
 import Loader from "../../../components1/common/ui/Loader";
 import LoginInterface from "./LoginInterface";
+import {commonActions} from "../../../store/Common.store";
 
 const Login = () => {
     const dispatch = useAppDispatch();
@@ -29,6 +30,12 @@ const Login = () => {
                 navigate("/bulk-bazaar", {replace: true})
                 break
             case LoginInterface.login.PENDING_OTP_VERIFICATION:
+                dispatch(commonActions.showNotification({
+                    type:'Error',
+                    date: new Date(),
+                    message: response1?.data.message
+                }))
+                navigate(`/verifyOTP/${email}`)
                 break
             case LoginInterface.login.PASSWORD_INCORRECT:
                 setError(response1.data.message)

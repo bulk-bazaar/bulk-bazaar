@@ -18,8 +18,8 @@ const ProductsSection: React.FC = () => {
         // <main className="flex w-full pt-5 pb-8 sm:pb-16 px-3 md:px-8 md:w-full xl:w-10/12 xl:absolute xl:left-[16%] m-auto min-h-screen">
         // <main className="flex bg-yellow-600 p-2">
         //   <HeaderTasks />
-        <div className={'relative w-full'}>
-            <div className={"ra pt-4"}>
+        <div className={'relative w-full px-[2%]'}>
+            <div>
                 <Routes>
                     <Route path="/" element={<HomePage/>}/>
                     <Route path="/product" element={<ProductDetailPage/>}/>

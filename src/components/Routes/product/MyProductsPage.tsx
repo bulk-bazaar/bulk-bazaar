@@ -6,7 +6,8 @@ import {tasksActions} from "../../../store/Product.store";
 import MessageTemplet from "../../../components1/common/ui/MessageTemplet";
 import {ordersActions} from "../../../store/Order.store";
 import {commonActions} from "../../../store/Common.store";
-import WithLoading from "../../../ui/hoc/WithLoading"; // Assuming useAppSelector is from your store setup
+import WithLoading from "../../../ui/hoc/WithLoading";
+import EmptyMessageView from "../order/EmptyMessageView"; // Assuming useAppSelector is from your store setup
 
 const MyProductsPage: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -29,8 +30,9 @@ const MyProductsPage: React.FC = () => {
     // Fetch the current product from the Redux store
 
     return <WithLoading loading={loading}>
-        {products.length === 0 ? <MessageTemplet title={"Empty products!"}
-                                                 description={"You can become a seller or refer someone else to become a seller"}/> : (
+        {!products || products.length === 0 ? <EmptyMessageView
+            title={'Empty products!'}
+            description={'You can become a seller or refer someone else to become a seller'}/>: (
             <div>
                 {products.map((product: Product) => (
                     <TaskItem key={product.title} isListInView1={true} product={product}/>

@@ -5,8 +5,8 @@ import ApiService from "../components1/network/ApiService";
 import {waitForSeconds} from "../components1/common/util/functions";
 
 const initialState: {
-    items: Product[];
     myitems: Product[];
+    items: Product[];
     current?: Product;
     loading: boolean,
     error: string | undefined
@@ -29,7 +29,8 @@ const tasksSlice = createAppSlice({
         }),
         addProducts: create.asyncThunk(
             async (product: Product, thunkApi) => {
-                const globalState = thunkApi.getState(); // Access entire state
+                const globalState: any = thunkApi.getState();
+                const pincode = globalState.address.addresess[0].pincode;
                 const apiService = new ApiService();
                 const response = await apiService.post(`/api/products`, {
                     title: product.title,
@@ -39,7 +40,8 @@ const tasksSlice = createAppSlice({
                     mrp: product.mrp,
                     price: product.price,
                     units: product.units,
-                    sellerId: product.sellerId
+                    sellerId: product.sellerId,
+                    pincode: pincode
                 });
                 await waitForSeconds(1);
                 return response?.data
@@ -97,7 +99,7 @@ const tasksSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false
-                    state.myitems = action.payload.data
+                    state.myitems = action.payload.data || []
                 },
             }
         ),

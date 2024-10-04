@@ -10,6 +10,7 @@ const ModalCreateProduct: React.FC<{
     onConfirm: (product: Product) => void;
 }> = ({onClose, product, nameForm, onConfirm}) => {
     const user = useAppSelector((state) => state.user.user);
+    const addresess: any = useAppSelector((state) => state.address.addresess);
     const [title, setTitle] = useState<string>(product?.title || '');
     const [description, setDescription] = useState<string>(product?.description || '');
     const [minimumQuantity, setMinimumQuantity] = useState<number | undefined>(product?.minimumQuantity);
@@ -37,7 +38,7 @@ const ModalCreateProduct: React.FC<{
         onClose();
     };
     return (
-        <Modal onClose={onClose} title={nameForm}>
+        <Modal onClose={onClose} title={`${nameForm} For Pincode: ${addresess[0].pincode}`}>
             <div className="overflow-y-auto max-h-[600px] p-2">
                 <form
                     className="flex flex-col stylesInputsField"
