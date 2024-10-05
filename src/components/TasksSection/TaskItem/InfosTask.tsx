@@ -12,7 +12,7 @@ const InfosTask: React.FC<{ product: Product; isListInView1: boolean }> =
         const progressPercentage = calculateProgress();
 
         return (
-            <div className="mt-4 p-4 shadow-lg rounded-lg bg-white dark:bg-slate-800 flex flex-col w-full">
+            <div className="mt-4 p-4 shadow-lg rounded-lg bg-white dark:bg-slate-800 flex flex-col xl:mx-[25%]">
                 {/* Product Title */}
                 <h2 className="text-2xl font-semibold mb-2 dark:text-slate-200">
                     {product.title}

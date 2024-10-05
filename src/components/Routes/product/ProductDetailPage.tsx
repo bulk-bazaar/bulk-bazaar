@@ -55,20 +55,20 @@ const ProductDetailPage: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg dark:bg-slate-800">
+        <div className="m-4 p-6 bg-white shadow-lg rounded-lg dark:bg-slate-800  xl:mx-[25%]">
             {/* Main Product Information */}
             <div className="flex flex-col md:flex-row items-start md:space-x-8">
                 {/* Product Image */}
-                <div className="w-full md:w-1/2 mb-6 md:mb-0">
+                <div className="mb-6 md:mb-0">
                     <img
                         src="https://m.media-amazon.com/images/I/51DJ-9xkuQL._AC_UF1000,1000_QL80_.jpg"
                         alt={product.title}
-                        className="w-full h-auto object-cover"
+                        className="h-auto object-cover"
                     />
                 </div>
 
                 {/* Product Details */}
-                <div className="w-full md:w-1/2">
+                <div className="">
                     <h1 className="text-3xl font-semibold mb-4 dark:text-slate-200">
                         {product.title}
                     </h1>

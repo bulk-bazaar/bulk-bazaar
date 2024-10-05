@@ -14,10 +14,13 @@ function HomePage() {
     const products = useAppSelector((state) => state.products.items);
     const isLoading = useAppSelector((state) => state.products.loading);
     const addreses: any = useAppSelector((state) => state.address.addresess);
-    const isPinCodeChanged = (addreses || [])[0]?.pincode
+    let isPinCodeChanged = ''
+    if (addreses && addreses.length > 0)
+        isPinCodeChanged = addreses[0].pincode
     const onEmptyAction = (!addreses || addreses.length === 0) ? () => {
         dispatch(modalActions.openModalAddress());
     } : undefined
+    console.log('GAJENDRA pincode', isPinCodeChanged)
     useEffect(() => {
         dispatch(tasksActions.fetchProducts(''));
         dispatch(addressActions.fetchAddress(''))
