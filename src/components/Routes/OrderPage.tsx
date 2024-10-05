@@ -39,41 +39,41 @@ const OrderPage = () => {
     }, []);
     return <WithLoading loading={loading}>
         <div className="min-h-screen">
-            {groupedOrders && groupedOrders.length > 0 ?
-                <div className="flex flex-col space-y-4">
-                    <h1 className="text-3xl font-bold text-center mb-8">Order List</h1>
-                    {Object.keys(groupedOrders).map((date) => (
-                        <React.Fragment key={date}>
-                            {/* Date Header */}
-                            <h2 className="text-xl font-semibold mb-2 border-b border-gray-300 pb-2">{date}</h2>
+            {
+                Object.keys(groupedOrders).length > 0 ? <div className="flex flex-col space-y-4">
+                        <h1 className="text-3xl font-bold text-center mb-8">Order List</h1>
+                        {Object.keys(groupedOrders).map(
+                            (date) => (
+                                <React.Fragment key={date}>
+                                    {/* Date Header */}
+                                    <h2 className="text-xl font-semibold mb-2 border-b border-gray-300 pb-2">{date}</h2>
 
-                            {/* Display each order separately */}
-                            {groupedOrders[date].map((order: any) => (
-                                <div className="bg-white shadow-lg rounded-lg dark:bg-slate-800 p-4" key={order.id}>
-                                    <div className="flex items-center space-x-4">
-                                        <img
-                                            src={'https://m.media-amazon.com/images/I/51DJ-9xkuQL._AC_UF1000,1000_QL80_.jpg'}
-                                            alt={`Order ${order.id}`}
-                                            className="w-16 h-16 object-cover rounded-md"
-                                        />
-                                        <div className="flex-1">
-                                            <h3 className="text-lg font-semibold">{order.title}</h3>
-                                            <p className="text-gray-600">Quantity: {order.quantity}</p>
-                                            {/* Highlighting the amount */}
-                                            <p className="mt-1 text-2xl font-bold">
-                                                ₹{order.price * order.quantity}
-                                            </p>
+                                    {/* Display each order separately */}
+                                    {groupedOrders[date].map((order: any) => (
+                                        <div className="bg-white shadow-lg rounded-lg dark:bg-slate-800 p-4" key={order.id}>
+                                            <div className="flex items-center space-x-4">
+                                                <img
+                                                    src={'https://m.media-amazon.com/images/I/51DJ-9xkuQL._AC_UF1000,1000_QL80_.jpg'}
+                                                    alt={`Order ${order.id}`}
+                                                    className="w-16 h-16 object-cover rounded-md"
+                                                />
+                                                <div className="flex-1">
+                                                    <h3 className="text-lg font-semibold">{order.title}</h3>
+                                                    <p className="text-gray-600">Quantity: {order.quantity}</p>
+                                                    {/* Highlighting the amount */}
+                                                    <p className="mt-1 text-2xl font-bold">
+                                                        ₹{order.price * order.quantity}
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    ))}
+                                </React.Fragment>
                             ))}
-                        </React.Fragment>
-                    ))}
-                </div>
-                :
-                <EmptyMessageView
-                    title={'Empty order!'}
-                    description={'You have not placed any order yet!'}/>
+                    </div>
+                    : <EmptyMessageView
+                        title={'Empty order!'}
+                        description={'You have not placed any order yet!'}/>
             }
         </div>
 

@@ -37,14 +37,14 @@ const ProductDetailPage: React.FC = () => {
     // Increase quantity to buy
     const increaseQuantity = () => {
         if (quantity < product.maximumQuantity) {
-            setQuantity((prev) => prev + 1);
+            setQuantity((prev) => prev + product.minimumQuantity);
         }
     };
 
     // Decrease quantity to buy
     const decreaseQuantity = () => {
         if (quantity > product.minimumQuantity) {
-            setQuantity((prev) => prev - 1);
+            setQuantity((prev) => prev - product.minimumQuantity);
         }
     };
 
@@ -136,7 +136,7 @@ const ProductDetailPage: React.FC = () => {
                 </h2>
                 <div className="bg-gray-200 rounded-full h-6 mb-4 dark:bg-gray-600">
                     <div
-                        className="bg-green-500 h-6 rounded-full"
+                        className="bg-orange-500 h-6 rounded-full"
                         style={{width: `${progressPercentage}%`}}
                     ></div>
                 </div>
